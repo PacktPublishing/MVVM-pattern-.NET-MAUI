@@ -4,58 +4,59 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="RecipeDetailPage">
-    <VerticalStackLayout>
-        <!--<Label
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            <!--<Label
             x:Name="lblTitle"
-            Margin="10"
             FontAttributes="Bold"
-            FontSize="20" />-->
-        <Label
-            Margin="10"
-            FontAttributes="Bold"
-            FontSize="20"
-            Text="{Binding Path=Title, Mode=OneTime}" />
+            FontSize="22" />-->
+            <Label
+                FontAttributes="Bold"
+                FontSize="22"
+                Text="{Binding Path=Title, Mode=OneTime}" />
 
-        <Label
-            Margin="20,0,0,0"
-            Style="{DynamicResource SubtitleStyle}"
-            Text="Allergens" />
-        <VerticalStackLayout Margin="20,0,0,20">
-            <Label Text="ToDo, show basic allergen information" />
-            <HorizontalStackLayout>
-                <Label Text="Show extended allergen list?" VerticalOptions="Center" />
-                <CheckBox IsChecked="{Binding ShowExtendedAllergenList, Mode=OneWayToSource}" />
-            </HorizontalStackLayout>
-            <VerticalStackLayout Margin="10,0,0,0" IsVisible="{Binding ShowExtendedAllergenList, Mode=OneWay}">
-                <Label Text="ToDo, add extended allergen list" />
+            <VerticalStackLayout Padding="20">
+                <Label
+                    FontAttributes="Italic,Bold"
+                    FontSize="16"
+                    Text="Allergens" />
+                <VerticalStackLayout>
+                    <Label Text="ToDo, show basic allergen information" />
+                    <HorizontalStackLayout>
+                        <Label Text="Show extended allergen list?" VerticalOptions="Center" />
+                        <CheckBox IsChecked="{Binding ShowExtendedAllergenList, Mode=OneWayToSource}" />
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout Margin="10,0,0,0" IsVisible="{Binding ShowExtendedAllergenList, Mode=OneWay}">
+                        <Label Text="ToDo, add extended allergen list" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+
+
+                <Label
+                    Margin="0,20,0,0"
+                    FontAttributes="Italic,Bold"
+                    FontSize="16"
+                    Text="Ingredients list" />
+                <HorizontalStackLayout BindingContext="{Binding IngredientsList}">
+                    <Label Text="Number of servings:" VerticalOptions="Center" />
+
+                    <Label
+                        Margin="10,0"
+                        FontAttributes="Bold"
+                        Text="{Binding NumberOfServings, Mode=OneWay}"
+                        VerticalOptions="Center" />
+
+                    <Stepper
+                        BackgroundColor="{OnPlatform WinUI={StaticResource Primary}}"
+                        Maximum="8"
+                        Minimum="1"
+                        Value="{Binding NumberOfServings, Mode=TwoWay}" />
+                </HorizontalStackLayout>
+
+                <Button Command="{Binding AddAsFavoriteCommand}" Text="Add as favorite" />
+                <Button Command="{Binding RemoveAsFavoriteCommand}" Text="Remove as favorite" />
             </VerticalStackLayout>
         </VerticalStackLayout>
-
-
-
-        <Label
-            Margin="20,0,0,0"
-            Style="{DynamicResource SubtitleStyle}"
-            Text="Ingredients list" />
-        <HorizontalStackLayout Margin="20,0,0,0" BindingContext="{Binding IngredientsList}">
-            <Label Text="Number of servings:" VerticalOptions="Center" />
-
-            <Label
-                Margin="10,0"
-                FontAttributes="Bold"
-                Text="{Binding NumberOfServings, Mode=OneWay}"
-                VerticalOptions="Center" />
-
-            <Stepper
-                Maximum="8"
-                Minimum="1"
-                Value="{Binding NumberOfServings, Mode=TwoWay}" />
-        </HorizontalStackLayout>
-
-        <Button Command="{Binding AddAsFavoriteCommand}" Text="Add as favorite" />
-        <Button Command="{Binding RemoveAsFavoriteCommand}" Text="Remove as favorite" />
-
-        <!--  IsVisible="{Binding IsEnabled, Source={RelativeSource Mode=Self}}"  -->
-        <!--  IsVisible="{Binding IsEnabled, Source={RelativeSource Mode=Self}}"  -->
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

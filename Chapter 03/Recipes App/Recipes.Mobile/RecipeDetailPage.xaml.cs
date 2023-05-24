@@ -6,8 +6,11 @@ public partial class RecipeDetailPage : ContentPage
 {
 	public RecipeDetailPage()
 	{
-		InitializeComponent();
+        Application.Current.UserAppTheme = AppTheme.Light;
+
+        InitializeComponent();
 		BindingContext = new RecipeDetailViewModel();
+
 		//lblTitle.SetBinding(Label.TextProperty,
 		//	nameof(RecipeDetailViewModel.Title),
 		//	BindingMode.OneTime);
