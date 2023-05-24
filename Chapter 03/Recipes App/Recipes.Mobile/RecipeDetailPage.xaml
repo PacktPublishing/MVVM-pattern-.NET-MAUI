@@ -6,10 +6,13 @@
     Title="RecipeDetailPage">
     <ScrollView>
         <VerticalStackLayout Padding="10">
+            <!--  A named label which can be used when doing data binding in code-behind  -->
             <!--<Label
             x:Name="lblTitle"
             FontAttributes="Bold"
             FontSize="22" />-->
+
+            <!--  Binding in XAML  -->
             <Label
                 FontAttributes="Bold"
                 FontSize="22"
@@ -54,8 +57,19 @@
                         Value="{Binding NumberOfServings, Mode=TwoWay}" />
                 </HorizontalStackLayout>
 
-                <Button Command="{Binding AddAsFavoriteCommand}" Text="Add as favorite" />
-                <Button Command="{Binding RemoveAsFavoriteCommand}" Text="Remove as favorite" />
+                <!--  Using different Commands for each button  -->
+                <!--<Button Command="{Binding AddAsFavoriteCommand}" Text="Add as favorite" />
+                <Button Command="{Binding RemoveAsFavoriteCommand}" Text="Remove as favorite" />-->
+
+                <!--  Using one Command for both buttons, using a CommandParameter  -->
+                <Button
+                    Command="{Binding SetFavoriteCommand}"
+                    CommandParameter="{x:Boolean true}"
+                    Text="Add as favorite" />
+                <Button
+                    Command="{Binding SetFavoriteCommand}"
+                    CommandParameter="{x:Boolean false}"
+                    Text="Remove as favorite" />
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

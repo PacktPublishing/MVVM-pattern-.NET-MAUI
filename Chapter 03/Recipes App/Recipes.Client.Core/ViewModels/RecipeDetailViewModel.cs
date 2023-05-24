@@ -34,6 +34,7 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
                 _isFavorite = value;
                 ((Command)AddAsFavoriteCommand).ChangeCanExecute();
                 ((Command)RemoveAsFavoriteCommand).ChangeCanExecute();
+                ((Command<bool>)SetFavoriteCommand).ChangeCanExecute();
             }
         }
     }
@@ -50,11 +51,22 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
         get;
     }
 
+    public ICommand SetFavoriteCommand
+    {
+        get;
+    }
+
     public RecipeDetailViewModel()
     {
         AddAsFavoriteCommand = new Command(AddAsFavorite, CanAddAsFavorite);
         RemoveAsFavoriteCommand = new Command(RemoveAsFavorite, CanRemoveAsFavorite);
+
+        SetFavoriteCommand = new Command<bool>(SetFavorite, CanSetFavorite);
     }
+
+    private bool CanSetFavorite(bool isFavorite) => IsFavorite != isFavorite;
+
+    private void SetFavorite(bool isFavorite) => IsFavorite = isFavorite;
 
     private void AddAsFavorite() => IsFavorite = true;
     private void RemoveAsFavorite() => IsFavorite = false;
