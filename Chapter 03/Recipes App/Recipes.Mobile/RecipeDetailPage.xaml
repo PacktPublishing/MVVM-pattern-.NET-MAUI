@@ -34,8 +34,6 @@
                     </VerticalStackLayout>
                 </VerticalStackLayout>
 
-
-
                 <Label
                     Margin="0,20,0,0"
                     FontAttributes="Italic,Bold"
