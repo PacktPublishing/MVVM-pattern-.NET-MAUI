@@ -37,11 +37,6 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
             }
         }
     }
-
-
-    public AllergenInformationViewModel AllergenInformation
-    { get; set; } = new AllergenInformationViewModel();
-
     public IngredientsListViewModel IngredientsList
     { get; set; } = new();
 
