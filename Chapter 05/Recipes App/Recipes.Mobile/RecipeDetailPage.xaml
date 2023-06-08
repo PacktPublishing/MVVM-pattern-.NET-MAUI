@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:conv="clr-namespace:Recipes.Mobile.Converters"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vms="clr-namespace:Recipes.Client.Core.ViewModels;assembly=Recipes.Client.Core"
     Title="RecipeDetailPage"
     x:DataType="vms:RecipeDetailViewModel">
@@ -12,21 +13,43 @@
         <conv:RatingToColorConverter x:Key="ratingToColorConverter" />
         <conv:RatingAndReviewsToColorConverter x:Key="ratingAndReviewsToColorConverter" />
         <conv:InverseBoolConverter x:Key="inverseBoolConverter" />
+        <conv:DoNothingConverter x:Key="doNothingConverter" />
+        <toolkit:ListToStringConverter x:Key="listToStringConverter" Separator=", " />
+        <toolkit:BoolToObjectConverter
+            x:Key="isFavoriteToColorConverter"
+            x:TypeArguments="Color"
+            FalseObject="#E9E9E9E9"
+            TrueObject="#FF0000" />
     </ContentPage.Resources>
     <ScrollView>
+        <ScrollView.Behaviors>
+            <toolkit:EventToCommandBehavior Command="{Binding UserIsBrowsingCommand}" EventName="Scrolled" />
+        </ScrollView.Behaviors>
         <VerticalStackLayout Padding="10" BackgroundColor="GhostWhite">
-            <Label
-                FontAttributes="Bold"
-                FontSize="22"
-                Text="{Binding Path=Title, Mode=OneTime}" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    Text="{Binding Path=Title, Mode=OneTime}"
+                    VerticalOptions="Center" />
+                <Image
+                    x:Name="favoriteIcon"
+                    Grid.Column="1"
+                    Margin="5"
+                    HeightRequest="35"
+                    Source="favorite.png"
+                    VerticalOptions="Center"
+                    WidthRequest="35">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{Binding Source={x:Reference favoriteIcon}, Path=BindingContext.IsFavorite, Converter={StaticResource isFavoriteToColorConverter}}" />
+                    </Image.Behaviors>
+                </Image>
+            </Grid>
 
-            <!--  Binding LastUpdated with StringFormat  -->
-            <!--<Label
-            FontSize="8"
-            HorizontalOptions="End"
-            Text="{Binding LastUpdated, StringFormat='Last updated: {0:D}'}" />-->
-
-            <!--  Multibind LastUpdated and Author  -->
             <Label FontSize="8" HorizontalOptions="End">
                 <Label.Text>
                     <MultiBinding StringFormat="{}Last updated: {0:D} | {1}">
@@ -36,31 +59,9 @@
                 </Label.Text>
             </Label>
 
-            <Image
-                Margin="5"
-                HeightRequest="35"
-                IsVisible="{Binding IsFavorite}"
-                Source="favorite.png"
-                WidthRequest="35" />
-
             <VerticalStackLayout>
                 <HorizontalStackLayout Margin="0,0,0,10">
                     <Grid VerticalOptions="Center">
-
-                        <!--  Rating indicator with TextColor dependant on the AverageRating, using an IValueConverter  -->
-                        <!--<Label
-                        FontFamily="MaterialIconsRegular"
-                        FontSize="18"
-                        Text="{Binding RatingDetail.MaxRating, Converter={StaticResource ratingToStarsConverter}}"
-                        TextColor="{Binding RatingDetail.AverageRating, Converter={StaticResource ratingToColorConverter}, ConverterParameter=background, TargetNullValue={x:Static Colors.HotPink}}" />
-
-                    <Label
-                        FontFamily="MaterialIconsRegular"
-                        FontSize="18"
-                        Text="{Binding RatingDetail.AverageRating, Converter={StaticResource ratingToStarsConverter}}"
-                        TextColor="{Binding RatingDetail.AverageRating, Converter={StaticResource ratingToColorConverter}}" />-->
-
-                        <!--  Rating indicator with TextColor dependant on TotalReviews and AverageRating using MultiBinding and an IMultiValueConverter  -->
                         <Label
                             FontFamily="MaterialIconsRegular"
                             FontSize="18"
@@ -103,19 +104,20 @@
                 HorizontalOptions="Fill"
                 Source="{Binding Image, TargetNullValue=fallback.png}" />
 
+
             <VerticalStackLayout>
                 <Button
-                    BackgroundColor="LightSlateGray"
-                    Command="{Binding AddAsFavoriteCommand}"
-                    IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
-                    Text="Add as favorite"
-                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
+                BackgroundColor="LightSlateGray"
+                Command="{Binding AddAsFavoriteCommand}"
+                IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
+                Text="Add as favorite"
+                TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
                 <Button
-                    BackgroundColor="LightSlateGray"
-                    Command="{Binding RemoveAsFavoriteCommand}"
-                    IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
-                    Text="Remove as favorite"
-                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
+                BackgroundColor="LightSlateGray"
+                Command="{Binding RemoveAsFavoriteCommand}"
+                IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
+                Text="Remove as favorite"
+                TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Padding="10">
@@ -126,11 +128,9 @@
                         FontAttributes="Italic"
                         Text="Show Allergen information"
                         VerticalOptions="Center" />
-                    <!--<CheckBox x:Name="cbShowAllergens" IsChecked="False" />-->
                     <CheckBox IsChecked="{Binding HideAllergenInformation, Mode=OneWayToSource, Converter={StaticResource inverseBoolConverter}}" />
                 </HorizontalStackLayout>
-                <!--<Label IsVisible="{Binding IsChecked, Source={Reference cbShowAllergens}}" Text="ToDo: add allergen information" />-->
-                <Label IsVisible="{Binding HideAllergenInformation, Mode=OneWay, Converter={StaticResource inverseBoolConverter}}" Text="ToDo: add allergen information" />
+                <Label IsVisible="{Binding HideAllergenInformation, Mode=OneWay, Converter={StaticResource inverseBoolConverter}}" Text="{Binding Allergens, Converter={StaticResource listToStringConverter}}" />
             </VerticalStackLayout>
 
 

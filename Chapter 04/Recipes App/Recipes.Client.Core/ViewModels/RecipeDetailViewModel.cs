@@ -11,26 +11,28 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
     public RecipeRatingsDetailViewModel RatingDetail { get; set; }
         =  new ();
 
-    private bool _hideExtendedAllergenList = true;
-    public bool HideExtendedAllergenList
+    private bool _hideAllergenInformation = true;
+    public bool HideAllergenInformation
     {
-        get => _hideExtendedAllergenList;
+        get => _hideAllergenInformation;
         set
         {
-            if (_hideExtendedAllergenList != value)
+            if (_hideAllergenInformation != value)
             {
-                _hideExtendedAllergenList = value;
+                _hideAllergenInformation = value;
                 OnPropertyChanged();
             }
         }
     }
 
     public int? Calories { get; set; } = 240;
+    public int? ReadyInMinutes { get; set; } = 30;
 
     public DateTime LastUpdated { get; set; }
         = new DateTime(2020, 7, 3);
 
     public string Author { get; set; } = "Sally Burton";
+    public string Image { get; set; } = "caesarsalad.png";
 
     private bool? _isFavorite = false;
     public bool? IsFavorite
@@ -42,9 +44,11 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
             if (_isFavorite != value)
             {
                 _isFavorite = value;
+                OnPropertyChanged();
+
                 ((Command)AddAsFavoriteCommand).ChangeCanExecute();
                 ((Command)RemoveAsFavoriteCommand).ChangeCanExecute();
-            }
+;            }
         }
     }
 
@@ -61,11 +65,25 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
         get;
     }
 
+    public ICommand SetFavoriteCommand
+    {
+        get;
+    }
+
     public RecipeDetailViewModel()
     {
         AddAsFavoriteCommand = new Command(AddAsFavorite, CanAddAsFavorite);
         RemoveAsFavoriteCommand = new Command(RemoveAsFavorite, CanRemoveAsFavorite);
+        
+        SetFavoriteCommand =
+               new Command<bool>(SetFavorite, CanSetFavorite);
     }
+
+    private bool CanSetFavorite(bool isFavorite)
+        => IsFavorite != isFavorite;
+
+    private void SetFavorite(bool isFavorite)
+        => IsFavorite = isFavorite;
 
     private void AddAsFavorite() => IsFavorite = true;
     private void RemoveAsFavorite() => IsFavorite = false;

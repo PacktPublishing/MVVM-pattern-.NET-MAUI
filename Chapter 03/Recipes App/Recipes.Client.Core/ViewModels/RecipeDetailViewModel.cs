@@ -8,15 +8,15 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
 {
     public string Title { get; set; } = "Classic Caesar Salad";
 
-    private bool _showExtendedAllergenList;
-    public bool ShowExtendedAllergenList
+    private bool _showAllergenInformation;
+    public bool ShowAllergenInformation
     {
-        get => _showExtendedAllergenList;
+        get => _showAllergenInformation;
         set
         {
-            if (_showExtendedAllergenList != value)
+            if (_showAllergenInformation != value)
             {
-                _showExtendedAllergenList = value;
+                _showAllergenInformation = value;
                 OnPropertyChanged();
             }
         }
@@ -32,6 +32,8 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
             if (_isFavorite != value)
             {
                 _isFavorite = value;
+                OnPropertyChanged();
+
                 ((Command)AddAsFavoriteCommand).ChangeCanExecute();
                 ((Command)RemoveAsFavoriteCommand).ChangeCanExecute();
                 ((Command<bool>)SetFavoriteCommand).ChangeCanExecute();
@@ -61,12 +63,15 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
         AddAsFavoriteCommand = new Command(AddAsFavorite, CanAddAsFavorite);
         RemoveAsFavoriteCommand = new Command(RemoveAsFavorite, CanRemoveAsFavorite);
 
-        SetFavoriteCommand = new Command<bool>(SetFavorite, CanSetFavorite);
+        SetFavoriteCommand = 
+            new Command<bool>(SetFavorite, CanSetFavorite);
     }
 
-    private bool CanSetFavorite(bool isFavorite) => IsFavorite != isFavorite;
+    private bool CanSetFavorite(bool isFavorite) 
+        => IsFavorite != isFavorite;
 
-    private void SetFavorite(bool isFavorite) => IsFavorite = isFavorite;
+    private void SetFavorite(bool isFavorite) 
+        => IsFavorite = isFavorite;
 
     private void AddAsFavorite() => IsFavorite = true;
     private void RemoveAsFavorite() => IsFavorite = false;
