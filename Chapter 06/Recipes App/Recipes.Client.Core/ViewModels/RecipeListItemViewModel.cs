@@ -5,15 +5,11 @@ public class RecipeListItemViewModel
     public string Id { get; set; }
     public string? Image { get; set; }
     public string Title { get; set; }
-    public double AvgRating { get; set; }
-    public bool IsFavorite { get; set; }
 
-    public RecipeListItemViewModel(string id, string title, bool isFavorite = false, string? image = null, double avgRating = 0)
+    public RecipeListItemViewModel(string id, string title, string? image = null)
     {
         Id = id;
         Title = title;
-        IsFavorite = isFavorite;
         Image = image;
-        AvgRating = avgRating;
     }
 }

@@ -20,63 +20,34 @@
             x:TypeArguments="Color"
             FalseObject="#E9E9E9E9"
             TrueObject="#FF0000" />
-        <DataTemplate x:Key="recipeIngredientTemplate" 
-                      x:DataType="vms:RecipeIngredientViewModel">
-
+        <DataTemplate x:Key="instructionTemplate" x:DataType="vms:InstructionViewModel">
+            <VerticalStackLayout Spacing="10">
+                <Label FontSize="20" Text="{Binding Index, StringFormat='{0:D2}.'}" />
+                <Label Margin="10,0" Text="{Binding Description}" />
+            </VerticalStackLayout>
         </DataTemplate>
-        <DataTemplate x:Key="onlyRatingTemplate" x:DataType="vms:UserReviewViewModel">
-            <Border
-                Stroke="LightSlateGray"
-                StrokeShape="RoundRectangle 8"
-                StrokeThickness="1">
-                <VerticalStackLayout
-                    Margin="5"
-                    HorizontalOptions="Fill"
-                    Spacing="5">
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        Text="{Binding UserName}" />
-                    <Label
-                        FontFamily="MaterialIconsRegular"
-                        FontSize="22"
-                        HorizontalOptions="Center"
-                        Text="{Binding Rating, Converter={StaticResource ratingToStarsConverter}}"
-                        TextColor="{Binding Rating, Converter={StaticResource ratingToColorConverter}}" />
-                </VerticalStackLayout>
-            </Border>
+        <DataTemplate x:Key="noteTemplate" x:DataType="vms:NoteViewModel">
+            <Grid Margin="10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    FontFamily="MaterialIconsRegular"
+                    FontSize="20"
+                    Text="&#xe873;"
+                    TextColor="LightSlateGray" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Italic"
+                    Text="{Binding Note}"
+                    TextColor="LightSlateGray" />
+            </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="ratingAndReviewTemplate" x:DataType="vms:UserReviewViewModel">
-            <Border
-                Stroke="LightSlateGray"
-                StrokeShape="RoundRectangle 8"
-                StrokeThickness="1">
-                <VerticalStackLayout
-                    Margin="5"
-                    HorizontalOptions="Fill"
-                    Spacing="5">
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        Text="{Binding UserName}" />
-                    <Label
-                        FontFamily="MaterialIconsRegular"
-                        FontSize="22"
-                        HorizontalOptions="Start"
-                        Text="{Binding Rating, Converter={StaticResource ratingToStarsConverter}}"
-                        TextColor="{Binding Rating, Converter={StaticResource ratingToColorConverter}}" />
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        HorizontalOptions="Center"
-                        Text="{Binding Review}" />
-                </VerticalStackLayout>
-            </Border>
-        </DataTemplate>
-        <its:UserReviewDataTemplateSelector
-            x:Key="reviewTemplateSelector"
-            OnlyRatingTemplate="{StaticResource onlyRatingTemplate}"
-            RatingAndReviewTemplate="{StaticResource ratingAndReviewTemplate}" />
+        <its:InstructionBaseViewModelDataTemplateSelector
+            x:Key="instructionDataTemplateSelector"
+            InstructionTemplate="{StaticResource instructionTemplate}"
+            NoteTemplate="{StaticResource noteTemplate}" />
     </ContentPage.Resources>
     <ScrollView>
         <ScrollView.Behaviors>
@@ -247,7 +218,7 @@
                         BindableLayout.ItemsSource="{Binding ShoppingList}"
                         Spacing="10">
                         <BindableLayout.EmptyView>
-                            <Label Text="Nothing added" FontAttributes="Bold" />
+                            <Label FontAttributes="Bold" Text="Nothing added" />
                         </BindableLayout.EmptyView>
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="vms:RecipeIngredientViewModel">
@@ -255,7 +226,6 @@
                                     <Button
                                         Command="{Binding RemoveFromShoppingListCommand, Source={RelativeSource AncestorType={x:Type vms:RecipeDetailViewModel}}}"
                                         CommandParameter="{Binding}"
-                                        
                                         FontFamily="MaterialIconsRegular"
                                         Text="&#xe928;" />
                                     <Label
@@ -279,29 +249,8 @@
                     Text="Instructions" />
                 <VerticalStackLayout
                     Margin="0,10"
+                    BindableLayout.ItemTemplateSelector="{StaticResource instructionDataTemplateSelector}"
                     BindableLayout.ItemsSource="{Binding Instructions}"
-                    Spacing="10">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="vms:InstructionViewModel">
-                            <VerticalStackLayout Spacing="10">
-                                <Label FontSize="20" Text="{Binding Index, StringFormat='{0:D2}.'}" />
-                                <Label Margin="10,0" Text="{Binding Description}" />
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </VerticalStackLayout>
-            </VerticalStackLayout>
-
-
-            <VerticalStackLayout Padding="10">
-                <Label
-                    FontAttributes="Italic,Bold"
-                    FontSize="16"
-                    Text="Reviews" />
-                <VerticalStackLayout
-                    Margin="0,10"
-                    BindableLayout.ItemTemplateSelector="{StaticResource reviewTemplateSelector}"
-                    BindableLayout.ItemsSource="{Binding RatingDetail.Reviews}"
                     Spacing="10" />
             </VerticalStackLayout>
         </VerticalStackLayout>

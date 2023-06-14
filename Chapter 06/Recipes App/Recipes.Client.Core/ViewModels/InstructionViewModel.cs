@@ -1,6 +1,6 @@
 ﻿namespace Recipes.Client.Core.ViewModels;
 
-public class InstructionViewModel
+public class InstructionViewModel : InstructionBaseViewModel
 {
     public int Index { get; }
 
@@ -11,4 +11,13 @@ public class InstructionViewModel
         Index = index;
         Description = description;
     }
+}
+
+public class InstructionBaseViewModel { }
+
+public class NoteViewModel : InstructionBaseViewModel
+{
+    public string Note { get; }
+    public NoteViewModel(string note)
+        => Note = note;
 }

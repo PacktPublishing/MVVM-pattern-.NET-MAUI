@@ -43,7 +43,7 @@ public partial class RecipeDetailViewModel : ObservableObject
         }
     }
 
-    public List<InstructionViewModel> Instructions { get; }
+    public List<InstructionBaseViewModel> Instructions { get; }
 
     public RecipeRatingsDetailViewModel RatingDetail { get; }
         = new();
@@ -69,16 +69,17 @@ public partial class RecipeDetailViewModel : ObservableObject
         RemoveFromShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(RemoveFromShoppingList);
 
 
-        Instructions = new List<InstructionViewModel>()
+        Instructions = new List<InstructionBaseViewModel>()
         {
-            new (1, "Preheat your oven to 350°F (175°C). Place the baguette slices on a baking sheet and drizzle them with olive oil. Bake for about 10 minutes or until they are crispy and golden brown. Set aside to cool."),
-            new (2, "In a small skillet, heat 2 tablespoons of olive oil over medium heat. Add the minced garlic and cook for about 1-2 minutes until fragrant. Remove from heat and let it cool."),
-            new (3, "In a small bowl, whisk together the lemon juice, grated Parmesan cheese, minced anchovies (if using), and the cooled garlic-oil mixture. Set aside."),
-            new (4, "Fill a medium-sized saucepan with water and bring it to a boil. Gently place the eggs into the boiling water and cook for 4-5 minutes for soft-boiled eggs or 9-10 minutes for hard-boiled eggs. Once cooked, remove the eggs from the boiling water and place them in a bowl of ice water to cool. Once cool, peel the eggs and set them aside."),
-            new (5, "In a large salad bowl, add the torn romaine lettuce leaves. Pour the dressing over the lettuce and toss to coat evenly. Season with salt and freshly ground black pepper to taste."),
-            new (6, "Break the baguette slices into smaller pieces and add them to the salad. Toss gently to combine."),
-            new (7, "Cut the peeled eggs into halves or quarters and place them on top of the salad."),
-            new (8, "Finally, sprinkle some additional grated Parmesan cheese on top as a garnish.")
+            new InstructionViewModel(1, "Preheat your oven to 350°F (175°C). Place the baguette slices on a baking sheet and drizzle them with olive oil. Bake for about 10 minutes or until they are crispy and golden brown. Set aside to cool."),
+            new InstructionViewModel(2, "In a small skillet, heat 2 tablespoons of olive oil over medium heat. Add the minced garlic and cook for about 1-2 minutes until fragrant. Remove from heat and let it cool."),
+            new InstructionViewModel(3, "In a small bowl, whisk together the lemon juice, grated Parmesan cheese, minced anchovies (if using), and the cooled garlic-oil mixture. Set aside."),
+            new InstructionViewModel(4, "Fill a medium-sized saucepan with water and bring it to a boil. Gently place the eggs into the boiling water and cook for 4-5 minutes for soft-boiled eggs or 9-10 minutes for hard-boiled eggs. Once cooked, remove the eggs from the boiling water and place them in a bowl of ice water to cool. Once cool, peel the eggs and set them aside."),
+            new InstructionViewModel(5, "In a large salad bowl, add the torn romaine lettuce leaves. Pour the dressing over the lettuce and toss to coat evenly. Season with salt and freshly ground black pepper to taste."),
+            new NoteViewModel("To add a smoky flavor to your Caesar Salad, try grilling the romaine lettuce for a few minutes on each side before tearing it into bite-sized pieces."),
+            new InstructionViewModel(6, "Break the baguette slices into smaller pieces and add them to the salad. Toss gently to combine."),
+            new InstructionViewModel(7, "Cut the peeled eggs into halves or quarters and place them on top of the salad."),
+            new InstructionViewModel(8, "Finally, sprinkle some additional grated Parmesan cheese on top as a garnish.")
         };
     }
 

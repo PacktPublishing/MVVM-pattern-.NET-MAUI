@@ -6,15 +6,15 @@ namespace Recipes.Client.Core.ViewModels;
 
 public class RecipesOverviewViewModel : ObservableObject
 {
-    List<RecipeListItemViewModel> items = new List<RecipeListItemViewModel>()
+    List<RecipeListItemViewModel> items = new ()
             {
-                new ("1", "Classic Caesar Salad", false, "caesarsalad", 3.6),
-                new ("2", "Belgian Waffles", true, "waffle", 4),
-                new ("3", "Chicken Parmesan", true, avgRating: 3.9),
-                new ("4", "Moules-Frites", true, "moules", 2.6),
-                new ("5", "Spaghetti Carbonara", false, "carbonara", 3),
-                new ("6", "Chicken Stir-Fry", false, "stirfry", 1),
-                new ("7", "Pad Thai", false)
+                new ("1", "Classic Caesar Salad", "caesarsalad"),
+                new ("2", "Belgian Waffles", "waffle"),
+                new ("3", "Chicken Parmesan"),
+                new ("4", "Moules-Frites", "moules"),
+                new ("5", "Spaghetti Carbonara", "carbonara"),
+                new ("6", "Chicken Stir-Fry", "stirfry"),
+                new ("7", "Pad Thai")
             };
 
     public IEnumerable<IGrouping<string, RecipeListItemViewModel>> GroupedRecipes { get; set; }
@@ -23,9 +23,9 @@ public class RecipesOverviewViewModel : ObservableObject
     {
         Recipes = new ObservableCollection<RecipeListItemViewModel>(items);
 
-        GroupedRecipes = Recipes.GroupBy(r => r.Title.Substring(0, 1)).ToList();
+        //GroupedRecipes = Recipes.GroupBy(r => r.Title.Substring(0, 1)).ToList();
         TryLoadMoreItemsCommand = new AsyncRelayCommand(TryLoadMoreItems);
-        RefreshListCommand = new AsyncRelayCommand(RefreshList);
+        //RefreshListCommand = new AsyncRelayCommand(RefreshList);
     }
 
     private async Task RefreshList()
