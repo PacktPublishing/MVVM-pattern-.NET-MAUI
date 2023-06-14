@@ -55,8 +55,8 @@ public partial class RecipeDetailViewModel : ObservableObject
 
     public IRelayCommand AddAsFavoriteCommand { get; }
     public IRelayCommand RemoveAsFavoriteCommand { get; }
-    public IRelayCommand AddToShoppingCartCommand { get; }
-    public IRelayCommand RemoveFromShoppingCartCommand { get; }
+    public IRelayCommand AddToShoppingListCommand { get; }
+    public IRelayCommand RemoveFromShoppingListCommand { get; }
     public IRelayCommand UserIsBrowsingCommand { get; }
 
     public RecipeDetailViewModel()
@@ -65,20 +65,20 @@ public partial class RecipeDetailViewModel : ObservableObject
                new RelayCommand(AddAsFavorite, CanAddAsFavorite);
         RemoveAsFavoriteCommand = new RelayCommand(RemoveAsFavorite, CanRemoveAsFavorite);
         UserIsBrowsingCommand = new RelayCommand(UserIsBrowsing);
-        AddToShoppingCartCommand = new RelayCommand<RecipeIngredientViewModel>(AddToShoppingCart);
-        RemoveFromShoppingCartCommand = new RelayCommand<RecipeIngredientViewModel>(RemoveFromShoppingCart);
+        AddToShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(AddToShoppingList);
+        RemoveFromShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(RemoveFromShoppingList);
 
 
         Instructions = new List<InstructionViewModel>()
         {
-            new ( 0, "Preheat your oven to 350°F (175°C). Place the baguette slices on a baking sheet and drizzle them with olive oil. Bake for about 10 minutes or until they are crispy and golden brown. Set aside to cool."),
-            new (1, "In a small skillet, heat 2 tablespoons of olive oil over medium heat. Add the minced garlic and cook for about 1-2 minutes until fragrant. Remove from heat and let it cool."),
-            new (2, "In a small bowl, whisk together the lemon juice, grated Parmesan cheese, minced anchovies (if using), and the cooled garlic-oil mixture. Set aside."),
-            new (3, "Fill a medium-sized saucepan with water and bring it to a boil. Gently place the eggs into the boiling water and cook for 4-5 minutes for soft-boiled eggs or 9-10 minutes for hard-boiled eggs. Once cooked, remove the eggs from the boiling water and place them in a bowl of ice water to cool. Once cool, peel the eggs and set them aside."),
-            new (4, "In a large salad bowl, add the torn romaine lettuce leaves. Pour the dressing over the lettuce and toss to coat evenly. Season with salt and freshly ground black pepper to taste."),
-            new (5, "Break the baguette slices into smaller pieces and add them to the salad. Toss gently to combine."),
-            new (6, "Cut the peeled eggs into halves or quarters and place them on top of the salad."),
-            new (7, "Finally, sprinkle some additional grated Parmesan cheese on top as a garnish.")
+            new (1, "Preheat your oven to 350°F (175°C). Place the baguette slices on a baking sheet and drizzle them with olive oil. Bake for about 10 minutes or until they are crispy and golden brown. Set aside to cool."),
+            new (2, "In a small skillet, heat 2 tablespoons of olive oil over medium heat. Add the minced garlic and cook for about 1-2 minutes until fragrant. Remove from heat and let it cool."),
+            new (3, "In a small bowl, whisk together the lemon juice, grated Parmesan cheese, minced anchovies (if using), and the cooled garlic-oil mixture. Set aside."),
+            new (4, "Fill a medium-sized saucepan with water and bring it to a boil. Gently place the eggs into the boiling water and cook for 4-5 minutes for soft-boiled eggs or 9-10 minutes for hard-boiled eggs. Once cooked, remove the eggs from the boiling water and place them in a bowl of ice water to cool. Once cool, peel the eggs and set them aside."),
+            new (5, "In a large salad bowl, add the torn romaine lettuce leaves. Pour the dressing over the lettuce and toss to coat evenly. Season with salt and freshly ground black pepper to taste."),
+            new (6, "Break the baguette slices into smaller pieces and add them to the salad. Toss gently to combine."),
+            new (7, "Cut the peeled eggs into halves or quarters and place them on top of the salad."),
+            new (8, "Finally, sprinkle some additional grated Parmesan cheese on top as a garnish.")
         };
     }
 
@@ -93,14 +93,14 @@ public partial class RecipeDetailViewModel : ObservableObject
         //Do Logging
     }
 
-    private void AddToShoppingCart(RecipeIngredientViewModel viewModel)
+    private void AddToShoppingList(RecipeIngredientViewModel viewModel)
     {
         if (ShoppingList.Contains(viewModel))
             return;
         ShoppingList.Add(viewModel);
     }
 
-    private void RemoveFromShoppingCart(RecipeIngredientViewModel viewModel)
+    private void RemoveFromShoppingList(RecipeIngredientViewModel viewModel)
     {
         if (ShoppingList.Contains(viewModel))
             ShoppingList.Remove(viewModel);

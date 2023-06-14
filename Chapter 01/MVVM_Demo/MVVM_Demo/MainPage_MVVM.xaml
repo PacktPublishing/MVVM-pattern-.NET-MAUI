@@ -14,7 +14,8 @@
             HorizontalOptions="Center"
             IsVisible="{Binding IsLabelVisible}"
             Style="{DynamicResource TitleStyle}"
-            Text="{Binding QuoteOfTheDay, Mode=OneWay}"
+            Text="{Binding QuoteOfTheDay}"
+            TextColor="white"
             VerticalOptions="Center" />
     </Grid>
 

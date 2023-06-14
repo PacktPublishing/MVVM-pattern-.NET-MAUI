@@ -15,12 +15,9 @@ public partial class MainPage : ContentPage
         {
             var client = new HttpClient();
 
-            var response = await
-                client.GetAsync(
-                "https://my-quotes-api.com/quote-of-the-day");
-
             var quote = await
-                response.Content.ReadAsStringAsync();
+                client.GetStringAsync(
+                "https://my-quotes-api.com/quote-of-the-day");
 
             QuoteLabel.Text = quote;
 
