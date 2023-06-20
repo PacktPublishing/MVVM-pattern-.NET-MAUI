@@ -8,7 +8,7 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
 {
     public string Title { get; set; } = "Classic Caesar Salad";
 
-    public RecipeRatingsDetailViewModel RatingDetail { get; set; }
+    public RecipeRatingsSummaryViewModel RatingDetail { get; set; }
         =  new ();
 
     private bool _hideAllergenInformation = true;

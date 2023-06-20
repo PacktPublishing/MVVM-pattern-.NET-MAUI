@@ -18,55 +18,93 @@
             TrueObject="#FF0000" />
     </ContentPage.Resources>
     <!--  Fixed in 8? Dan zeker mee vermelden  -->
-    <RefreshView Command="{Binding RefreshListCommand}" IsEnabled="True">
-        <CollectionView
-            BackgroundColor="{StaticResource Primary}"
-            Header="Choose a recipe"
-            ItemsSource="{Binding Recipes}"
+    <!--<RefreshView Command="{Binding RefreshListCommand}" IsEnabled="True">-->
+    <CollectionView
+        BackgroundColor="{StaticResource Primary}"
+        EmptyView="{Binding}"
+        Footer="We ran out of recipes..."
+        Header="{Binding}"
+        ItemsSource="{Binding Recipes}"
+        RemainingItemsThreshold="5"
+        RemainingItemsThresholdReachedCommand="{Binding TryLoadMoreItemsCommand}"
+        SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}"
+        SelectionChanged="CollectionView_SelectionChanged"
+        SelectionChangedCommand="{Binding NavigateToSelectedDetailCommand}"
+        SelectionMode="Single">
+        <CollectionView.EmptyViewTemplate>
+            <DataTemplate>
+                <Label
+                    BackgroundColor="Red"
+                    HeightRequest="300"
+                    Text="{Binding UserName}" />
+            </DataTemplate>
+        </CollectionView.EmptyViewTemplate>
+        <!--
             RemainingItemsThreshold="5"
             RemainingItemsThresholdReachedCommand="{Binding TryLoadMoreItemsCommand}"
-            SelectionChanged="CollectionView_SelectionChanged"
-            SelectionMode="Single">
-            <CollectionView.HeaderTemplate>
-                <DataTemplate>
-                    <Grid BackgroundColor="{StaticResource Primary}" HorizontalOptions="Fill">
-                        <Image
-                            Aspect="Fill"
-                            HeightRequest="65"
-                            HorizontalOptions="Fill"
-                            Source="icon.png"
-                            VerticalOptions="Fill"
-                            WidthRequest="65" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.HeaderTemplate>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid BackgroundColor="White" HorizontalOptions="Fill">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="250" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+        -->
+        <CollectionView.HeaderTemplate>
+            <DataTemplate>
+                <!--<VerticalStackLayout
+                    Margin="5"
+                    BackgroundColor="{StaticResource Primary}"
+                    HorizontalOptions="Fill">
+                    <Image
+                        Aspect="Fill"
+                        HeightRequest="65"
+                        HorizontalOptions="Fill"
+                        Source="icon.png"
+                        VerticalOptions="Fill"
+                        WidthRequest="65" />-->
+                <Label
+                    Margin="10"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding TotalNumberOfRecipes, StringFormat='Browse through {0} Recipes!'}"
+                    TextColor="White" />
+                <!--</VerticalStackLayout>-->
+            </DataTemplate>
+        </CollectionView.HeaderTemplate>
+        <CollectionView.FooterTemplate>
+            <DataTemplate>
+                <Label
+                    Margin="10"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding StringFormat='This is the end. {0}'}"
+                    TextColor="White" />
+            </DataTemplate>
+        </CollectionView.FooterTemplate>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItems>
+                            <SwipeItem BackgroundColor="LightGreen" Text="Like" />
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+                    <Grid
+                        BackgroundColor="White"
+                        HorizontalOptions="Fill"
+                        RowDefinitions="200, Auto">
                         <Image
                             Aspect="AspectFill"
                             HorizontalOptions="Fill"
                             Source="{Binding Image, TargetNullValue=fallback}"
                             VerticalOptions="Fill" />
-                        <!--<Image
+                        <Image
                             x:Name="favoriteIcon"
                             Margin="5"
                             HeightRequest="45"
                             HorizontalOptions="End"
-                            IsVisible="{Binding IsFavorite}"
                             Source="favorite.png"
                             VerticalOptions="Start"
                             WidthRequest="45">
                             <Image.Behaviors>
                                 <toolkit:IconTintColorBehavior TintColor="{Binding Source={x:Reference favoriteIcon}, Path=IsVisible, Converter={StaticResource isFavoriteToColorConverter}}" />
                             </Image.Behaviors>
-                        </Image>-->
+                        </Image>
 
-                        <!--<VerticalStackLayout Grid.Row="1" Margin="20,5,20,40">-->
                         <Label
                             Grid.Row="1"
                             Margin="20,5,20,40"
@@ -77,16 +115,11 @@
                             Text="{Binding Title}"
                             TextColor="Black"
                             VerticalOptions="Center" />
-                        <!--<Label
-                                FontFamily="MaterialIconsRegular"
-                                FontSize="18"
-                                HorizontalOptions="Start"
-                                Text="{Binding AvgRating, Converter={StaticResource ratingToStarsConverter}}"
-                                TextColor="{Binding AvgRating, Converter={StaticResource ratingToColorConverter}}" />-->
-                        <!--</VerticalStackLayout>-->
                     </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </RefreshView>
+                </SwipeView>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    <!--</RefreshView>-->
 </ContentPage>

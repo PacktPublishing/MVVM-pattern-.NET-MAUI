@@ -1,9 +1,9 @@
-﻿namespace Recipes.Client.Core.ViewModels;
+﻿//namespace Recipes.Client.Core.ViewModels;
 
-public class IngredientViewModel
-{
-    public string Name { get; }
+//public class IngredientViewModel
+//{
+//    public string Name { get; }
 
-    public IngredientViewModel(string name)
-        => Name = name;
-}
+//    public IngredientViewModel(string name)
+//        => Name = name;
+//}

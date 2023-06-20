@@ -4,33 +4,33 @@ namespace Recipes.Client.Core.ViewModels;
 
 public class RecipeIngredientViewModel : ObservableObject
 {
-    public IngredientViewModel Ingredient { get; }
+    readonly int baseServings;
+    readonly double baseAmount;
 
-    public double BaseAmount { get; }
+    public string IngredientName { get; }
+
+    public string? Measurement { get; }
 
     double? _displayAmount;
     public double DisplayAmount
     {
-        get => _displayAmount ?? BaseAmount;
+        get => _displayAmount ?? baseAmount;
         set => SetProperty(ref _displayAmount, value);
     }
 
-    public int BaseServings { get; }
 
-    public string? Measurement { get; }
-
-    public RecipeIngredientViewModel(IngredientViewModel ingredient, 
+    public RecipeIngredientViewModel(string ingredientName, 
         double baseAmount, string? measurement = null, int baseServings = 4)
     {
-        Ingredient = ingredient;
-        BaseAmount = baseAmount;
-        BaseServings = baseServings;
+        IngredientName = ingredientName;
         Measurement = measurement;
+        this.baseAmount = baseAmount;
+        this.baseServings = baseServings;
     }
 
     public void UpdateServings(int servings)
     {
-        var factor = servings / (double)BaseServings;
-        DisplayAmount = factor * BaseAmount;
+        var factor = servings / (double)baseServings;
+        DisplayAmount = factor * baseAmount;
     }
 }

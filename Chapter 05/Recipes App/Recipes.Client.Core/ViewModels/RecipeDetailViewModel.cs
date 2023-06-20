@@ -7,7 +7,7 @@ public partial class RecipeDetailViewModel : ObservableObject
 {
     public string Title { get; set; } = "Classic Caesar Salad";
 
-    public RecipeRatingsDetailViewModel RatingDetail { get; set; }
+    public RecipeRatingsSummaryViewModel RatingDetail { get; set; }
         = new();
 
     public string[] Allergens { get; }

@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:conv="clr-namespace:Recipes.Mobile.Converters"
-    xmlns:its="clr-namespace:Recipes.Mobile.ItemTemplateSelectors"
+    xmlns:selectors="clr-namespace:Recipes.Mobile.TemplateSelectors"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vms="clr-namespace:Recipes.Client.Core.ViewModels;assembly=Recipes.Client.Core"
     x:DataType="vms:RecipeDetailViewModel">
@@ -22,16 +22,12 @@
             TrueObject="#FF0000" />
         <DataTemplate x:Key="instructionTemplate" x:DataType="vms:InstructionViewModel">
             <VerticalStackLayout Spacing="10">
-                <Label FontSize="20" Text="{Binding Index, StringFormat='{0:D2}.'}" />
-                <Label Margin="10,0" Text="{Binding Description}" />
+                <Label FontSize="20" Text="{Binding Index, StringFormat='{0:D2}.', Mode=OneTime}" />
+                <Label Margin="10,0" Text="{Binding Description, Mode=OneTime}" />
             </VerticalStackLayout>
         </DataTemplate>
         <DataTemplate x:Key="noteTemplate" x:DataType="vms:NoteViewModel">
-            <Grid Margin="10,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="35" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <Grid Margin="20,0" ColumnDefinitions="35,*">
                 <Label
                     FontFamily="MaterialIconsRegular"
                     FontSize="20"
@@ -40,11 +36,11 @@
                 <Label
                     Grid.Column="1"
                     FontAttributes="Italic"
-                    Text="{Binding Note}"
+                    Text="{Binding Note, Mode=OneTime}"
                     TextColor="LightSlateGray" />
             </Grid>
         </DataTemplate>
-        <its:InstructionBaseViewModelDataTemplateSelector
+        <selectors:InstructionsDataTemplateSelector
             x:Key="instructionDataTemplateSelector"
             InstructionTemplate="{StaticResource instructionTemplate}"
             NoteTemplate="{StaticResource noteTemplate}" />
@@ -121,6 +117,9 @@
                         FontSize="8"
                         Text="{Binding RatingDetail.AverageRating, StringFormat='{0:0.#} avg. rating', FallbackValue='Ratings not available', TargetNullValue='No ratings yet'}"
                         VerticalOptions="End" />
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Ratings_Tapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
 
@@ -185,7 +184,7 @@
 
                 <VerticalStackLayout
                     Margin="0,10"
-                    BindableLayout.ItemsSource="{Binding IngredientsList.Ingredients}"
+                    BindableLayout.ItemsSource="{Binding IngredientsList.Ingredients, Mode=OneTime}"
                     Spacing="10">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="vms:RecipeIngredientViewModel">
@@ -198,10 +197,10 @@
                                 <Label
                                     FontAttributes="Bold"
                                     FontSize="16"
-                                    Text="{Binding Ingredient.Name, StringFormat='{0}:'}"
+                                    Text="{Binding IngredientName, StringFormat='{0}:', Mode=OneTime}"
                                     VerticalOptions="Center" />
                                 <Label Text="{Binding DisplayAmount, Mode=OneWay}" VerticalOptions="Center" />
-                                <Label Text="{Binding Measurement}" VerticalOptions="Center" />
+                                <Label Text="{Binding Measurement, Mode=OneTime}" VerticalOptions="Center" />
                             </HorizontalStackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
@@ -215,11 +214,9 @@
                         Text="Shopping list" />
                     <VerticalStackLayout
                         Margin="0,10"
-                        BindableLayout.ItemsSource="{Binding ShoppingList}"
+                        BindableLayout.EmptyView="No items added"
+                        BindableLayout.ItemsSource="{Binding ShoppingList, Mode=OneTime}"
                         Spacing="10">
-                        <BindableLayout.EmptyView>
-                            <Label FontAttributes="Bold" Text="Nothing added" />
-                        </BindableLayout.EmptyView>
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="vms:RecipeIngredientViewModel">
                                 <HorizontalStackLayout Spacing="5">
@@ -231,10 +228,10 @@
                                     <Label
                                         FontAttributes="Bold"
                                         FontSize="16"
-                                        Text="{Binding Ingredient.Name, StringFormat='{0}:'}"
+                                        Text="{Binding IngredientName, StringFormat='{0}:', Mode=OneTime}"
                                         VerticalOptions="Center" />
                                     <Label Text="{Binding DisplayAmount, Mode=OneWay}" VerticalOptions="Center" />
-                                    <Label Text="{Binding Measurement}" VerticalOptions="Center" />
+                                    <Label Text="{Binding Measurement, Mode=OneTime}" VerticalOptions="Center" />
                                 </HorizontalStackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>

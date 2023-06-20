@@ -6,7 +6,7 @@ public partial class App : Application
 	{
         Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
-
-		MainPage = new NavigationPage(new RecipesOverviewPage()) { BarTextColor = Colors.White };// new RecipeDetailPage();
+        //*/ RecipeRatingDetailPage()
+        MainPage = new NavigationPage(new RecipesOverviewPage()) { BarTextColor = Colors.White };// new RecipeDetailPage();
 	}
 }

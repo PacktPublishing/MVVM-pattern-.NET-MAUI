@@ -45,7 +45,7 @@ public partial class RecipeDetailViewModel : ObservableObject
 
     public List<InstructionBaseViewModel> Instructions { get; }
 
-    public RecipeRatingsDetailViewModel RatingDetail { get; }
+    public RecipeRatingsSummaryViewModel RatingDetail { get; }
         = new();
 
     public ObservableCollection<RecipeIngredientViewModel> ShoppingList { get; } = new();
