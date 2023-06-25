@@ -64,6 +64,7 @@
                         x:Name="favoriteIcon"
                         Margin="5"
                         HeightRequest="45"
+                        IsVisible="{Binding IsFavorite}"
                         HorizontalOptions="End"
                         Source="favorite.png"
                         VerticalOptions="Start"

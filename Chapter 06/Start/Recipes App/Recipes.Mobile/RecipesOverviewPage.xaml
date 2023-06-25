@@ -60,6 +60,7 @@
                         Margin="5"
                         HeightRequest="45"
                         HorizontalOptions="End"
+                        IsVisible="{Binding IsFavorite}"
                         Source="favorite.png"
                         VerticalOptions="Start"
                         WidthRequest="45">
