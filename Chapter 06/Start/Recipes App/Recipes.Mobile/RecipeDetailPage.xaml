@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.RecipeDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:Recipes.Mobile.Converters"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:Recipes.Client.Core.ViewModels;assembly=Recipes.Client.Core"
+    x:DataType="vms:RecipeDetailViewModel">
+    <ContentPage.Resources>
+        <conv:RatingToStarsConverter x:Key="ratingToStarsConverter" />
+        <conv:RatingToColorConverter x:Key="ratingToColorConverter" />
+        <conv:RatingAndReviewsToColorConverter x:Key="ratingAndReviewsToColorConverter" />
+        <conv:InverseBoolConverter x:Key="inverseBoolConverter" />
+        <toolkit:ListToStringConverter x:Key="listToStringConverter" Separator=", " />
+        <toolkit:BoolToObjectConverter
+            x:Key="isFavoriteToColorConverter"
+            x:TypeArguments="Color"
+            FalseObject="#E9E9E9E9"
+            TrueObject="#FF0000" />
+
+        <!--  ToDo: add datatemplates  -->
+
+        <!--  ToDo: Add selector  -->
+
+    </ContentPage.Resources>
+    <ScrollView>
+        <ScrollView.Behaviors>
+            <toolkit:EventToCommandBehavior Command="{Binding UserIsBrowsingCommand}" EventName="Scrolled" />
+        </ScrollView.Behaviors>
+        <VerticalStackLayout Padding="10" BackgroundColor="GhostWhite">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    Text="{Binding Path=Title}"
+                    VerticalOptions="Center" />
+                <Image
+                    x:Name="favoriteIcon"
+                    Grid.Column="1"
+                    Margin="5"
+                    HeightRequest="35"
+                    Source="favorite.png"
+                    VerticalOptions="Center"
+                    WidthRequest="35">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{Binding Source={x:Reference favoriteIcon}, Path=BindingContext.IsFavorite, Converter={StaticResource isFavoriteToColorConverter}}" />
+                    </Image.Behaviors>
+                </Image>
+            </Grid>
+
+            <Label FontSize="8" HorizontalOptions="End">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}Last updated: {0:D} | {1}">
+                        <Binding Path="LastUpdated" />
+                        <Binding Path="Author" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+
+            <VerticalStackLayout>
+                <HorizontalStackLayout Margin="0,0,0,10">
+                    <Grid VerticalOptions="Center">
+                        <Label
+                            FontFamily="MaterialIconsRegular"
+                            FontSize="18"
+                            Text="{Binding RatingSummary.MaxRating, Converter={StaticResource ratingToStarsConverter}}">
+                            <Label.TextColor>
+                                <MultiBinding
+                                    Converter="{StaticResource ratingAndReviewsToColorConverter}"
+                                    ConverterParameter="background"
+                                    TargetNullValue="{x:Static Colors.HotPink}">
+                                    <Binding Path="RatingSummary.TotalReviews" />
+                                    <Binding Path="RatingSummary.AverageRating" />
+                                </MultiBinding>
+                            </Label.TextColor>
+                        </Label>
+
+                        <Label
+                            FontFamily="MaterialIconsRegular"
+                            FontSize="18"
+                            Text="{Binding RatingSummary.AverageRating, Converter={StaticResource ratingToStarsConverter}}">
+                            <Label.TextColor>
+                                <MultiBinding Converter="{StaticResource ratingAndReviewsToColorConverter}">
+                                    <Binding Path="RatingSummary.TotalReviews" />
+                                    <Binding Path="RatingSummary.AverageRating" />
+                                </MultiBinding>
+                            </Label.TextColor>
+                        </Label>
+                    </Grid>
+                    <Label
+                        FontSize="8"
+                        Text="{Binding RatingSummary.AverageRating, StringFormat='{0:0.#} avg. rating', FallbackValue='Ratings not available', TargetNullValue='No ratings yet'}"
+                        VerticalOptions="End" />
+                    <HorizontalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Ratings_Tapped" />
+                    </HorizontalStackLayout.GestureRecognizers>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <Image
+                Margin="-10,10"
+                Aspect="AspectFill"
+                HeightRequest="200"
+                HorizontalOptions="Fill"
+                Source="{Binding Image, TargetNullValue=fallback.png}" />
+
+
+            <VerticalStackLayout>
+                <Button
+                    BackgroundColor="LightSlateGray"
+                    Command="{Binding AddAsFavoriteCommand}"
+                    IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
+                    Text="Add as favorite"
+                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
+                <Button
+                    BackgroundColor="LightSlateGray"
+                    Command="{Binding RemoveAsFavoriteCommand}"
+                    IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
+                    Text="Remove as favorite"
+                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Padding="10">
+                <Label Text="{Binding Calories, StringFormat='Calories: {0} kcal', TargetNullValue='No calories information available'}" />
+                <Label Text="{Binding ReadyInMinutes, StringFormat='Ready in: {0} minutes', TargetNullValue='No cooking time specified'}" />
+                <HorizontalStackLayout>
+                    <Label
+                        FontAttributes="Italic"
+                        Text="Show Allergen information"
+                        VerticalOptions="Center" />
+                    <CheckBox IsChecked="{Binding HideAllergenInformation, Mode=OneWayToSource, Converter={StaticResource inverseBoolConverter}}" />
+                </HorizontalStackLayout>
+                <Label IsVisible="{Binding HideAllergenInformation, Mode=OneWay, Converter={StaticResource inverseBoolConverter}}" Text="{Binding Allergens, Converter={StaticResource listToStringConverter}}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Padding="10">
+                <Label
+                    FontAttributes="Italic,Bold"
+                    FontSize="16"
+                    Text="Ingredients list" />
+                <HorizontalStackLayout x:DataType="vms:IngredientsListViewModel" BindingContext="{Binding IngredientsList, Source={RelativeSource AncestorType={x:Type vms:RecipeDetailViewModel}}}">
+                    <Label Text="Number of servings:" VerticalOptions="Center" />
+
+                    <Label
+                        Margin="10,0"
+                        FontAttributes="Bold"
+                        Text="{Binding NumberOfServings, Mode=OneWay}"
+                        VerticalOptions="Center" />
+
+                    <Stepper
+                        BackgroundColor="{OnPlatform WinUI={StaticResource Primary}}"
+                        Maximum="8"
+                        Minimum="1"
+                        Value="{Binding NumberOfServings, Mode=TwoWay}" />
+                </HorizontalStackLayout>
+
+                <!--  ToDo: add list of ingredients  -->
+
+
+                <!--  ToDo: add shopping list  -->
+
+            </VerticalStackLayout>
+
+            <!--  ToDo: Add instructions  -->
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

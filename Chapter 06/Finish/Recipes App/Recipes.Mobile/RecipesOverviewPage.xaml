@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.RecipesOverviewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:Recipes.Mobile.Converters"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Recipes!"
+    BackgroundColor="{StaticResource Primary}"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <conv:RatingToStarsConverter x:Key="ratingToStarsConverter" />
+        <conv:RatingToColorConverter x:Key="ratingToColorConverter" />
+        <toolkit:BoolToObjectConverter
+            x:Key="isFavoriteToColorConverter"
+            x:TypeArguments="Color"
+            FalseObject="#E9E9E9E9"
+            TrueObject="#FF0000" />
+    </ContentPage.Resources>
+    <CollectionView
+        BackgroundColor="{StaticResource Primary}"
+        EmptyView="{Binding}"
+        Footer="We ran out of recipes..."
+        Header="{Binding}"
+        ItemsSource="{Binding Recipes}"
+        RemainingItemsThreshold="5"
+        RemainingItemsThresholdReachedCommand="{Binding TryLoadMoreItemsCommand}"
+        SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}"
+        SelectionChanged="CollectionView_SelectionChanged"
+        SelectionChangedCommand="{Binding NavigateToSelectedDetailCommand}"
+        SelectionMode="Single">
+        <CollectionView.HeaderTemplate>
+            <DataTemplate>
+                <Label
+                    Margin="10"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding TotalNumberOfRecipes, StringFormat='Browse through {0} Recipes!'}"
+                    TextColor="White" />
+            </DataTemplate>
+        </CollectionView.HeaderTemplate>
+        <CollectionView.FooterTemplate>
+            <DataTemplate>
+                <Label
+                    Margin="10"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding StringFormat='This is the end. {0}', Mode=OneTime}"
+                    TextColor="White" />
+            </DataTemplate>
+        </CollectionView.FooterTemplate>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid
+                    BackgroundColor="White"
+                    HorizontalOptions="Fill"
+                    RowDefinitions="200, Auto">
+                    <Image
+                        Aspect="AspectFill"
+                        HorizontalOptions="Fill"
+                        Source="{Binding Image, TargetNullValue=fallback}"
+                        VerticalOptions="Fill" />
+                    <Image
+                        x:Name="favoriteIcon"
+                        Margin="5"
+                        HeightRequest="45"
+                        HorizontalOptions="End"
+                        Source="favorite.png"
+                        VerticalOptions="Start"
+                        WidthRequest="45">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="{Binding Source={x:Reference favoriteIcon}, Path=IsVisible, Converter={StaticResource isFavoriteToColorConverter}}" />
+                        </Image.Behaviors>
+                    </Image>
+
+                    <Label
+                        Grid.Row="1"
+                        Margin="20,5,20,40"
+                        FontSize="16"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Start"
+                        MaxLines="2"
+                        Text="{Binding Title}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
