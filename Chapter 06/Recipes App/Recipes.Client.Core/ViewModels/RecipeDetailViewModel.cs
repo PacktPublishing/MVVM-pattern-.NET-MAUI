@@ -6,17 +6,12 @@ namespace Recipes.Client.Core.ViewModels;
 
 public partial class RecipeDetailViewModel : ObservableObject
 {
+    private bool _hideAllergenInformation = true;
+
     public string Title { get; set; } = "Classic Caesar Salad";
 
     public string[] Allergens { get; set; }
         = new string[] { "Milk", "Eggs", "Nuts", "Sesame" };
-
-    private bool _hideAllergenInformation = true;
-    public bool HideAllergenInformation
-    {
-        get => _hideAllergenInformation;
-        set => SetProperty(ref _hideAllergenInformation, value);
-    }
 
     public int? Calories { get; set; } = 240;
 
@@ -25,9 +20,18 @@ public partial class RecipeDetailViewModel : ObservableObject
     public DateTime LastUpdated { get; set; }
         = new DateTime(2020, 7, 3);
 
+    public RecipeRatingsSummaryViewModel RatingSummary { get; }
+       = new(15, 3.6d, 4);
+
     public string Author { get; set; } = "Sally Burton";
 
     public string Image { get; set; } = "caesarsalad.png";
+
+    public bool HideAllergenInformation
+    {
+        get => _hideAllergenInformation;
+        set => SetProperty(ref _hideAllergenInformation, value);
+    }
 
     private bool? _isFavorite = false;
     public bool? IsFavorite
@@ -44,9 +48,6 @@ public partial class RecipeDetailViewModel : ObservableObject
     }
 
     public List<InstructionBaseViewModel> Instructions { get; }
-
-    public RecipeRatingsSummaryViewModel RatingDetail { get; }
-        = new();
 
     public ObservableCollection<RecipeIngredientViewModel> ShoppingList { get; } = new();
 
@@ -67,7 +68,6 @@ public partial class RecipeDetailViewModel : ObservableObject
         UserIsBrowsingCommand = new RelayCommand(UserIsBrowsing);
         AddToShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(AddToShoppingList);
         RemoveFromShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(RemoveFromShoppingList);
-
 
         Instructions = new List<InstructionBaseViewModel>()
         {

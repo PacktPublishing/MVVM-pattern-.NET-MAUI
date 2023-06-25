@@ -17,8 +17,6 @@
             FalseObject="#E9E9E9E9"
             TrueObject="#FF0000" />
     </ContentPage.Resources>
-    <!--  Fixed in 8? Dan zeker mee vermelden  -->
-    <!--<RefreshView Command="{Binding RefreshListCommand}" IsEnabled="True">-->
     <CollectionView
         BackgroundColor="{StaticResource Primary}"
         EmptyView="{Binding}"
@@ -39,30 +37,14 @@
                     Text="{Binding UserName}" />
             </DataTemplate>
         </CollectionView.EmptyViewTemplate>
-        <!--
-            RemainingItemsThreshold="5"
-            RemainingItemsThresholdReachedCommand="{Binding TryLoadMoreItemsCommand}"
-        -->
         <CollectionView.HeaderTemplate>
             <DataTemplate>
-                <!--<VerticalStackLayout
-                    Margin="5"
-                    BackgroundColor="{StaticResource Primary}"
-                    HorizontalOptions="Fill">
-                    <Image
-                        Aspect="Fill"
-                        HeightRequest="65"
-                        HorizontalOptions="Fill"
-                        Source="icon.png"
-                        VerticalOptions="Fill"
-                        WidthRequest="65" />-->
                 <Label
                     Margin="10"
                     FontSize="18"
                     HorizontalOptions="Center"
                     Text="{Binding TotalNumberOfRecipes, StringFormat='Browse through {0} Recipes!'}"
                     TextColor="White" />
-                <!--</VerticalStackLayout>-->
             </DataTemplate>
         </CollectionView.HeaderTemplate>
         <CollectionView.FooterTemplate>
@@ -77,22 +59,16 @@
         </CollectionView.FooterTemplate>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <SwipeView>
-                    <SwipeView.LeftItems>
-                        <SwipeItems>
-                            <SwipeItem BackgroundColor="LightGreen" Text="Like" />
-                        </SwipeItems>
-                    </SwipeView.LeftItems>
-                    <Grid
+                <Grid
                         BackgroundColor="White"
                         HorizontalOptions="Fill"
                         RowDefinitions="200, Auto">
-                        <Image
+                    <Image
                             Aspect="AspectFill"
                             HorizontalOptions="Fill"
                             Source="{Binding Image, TargetNullValue=fallback}"
                             VerticalOptions="Fill" />
-                        <Image
+                    <Image
                             x:Name="favoriteIcon"
                             Margin="5"
                             HeightRequest="45"
@@ -100,12 +76,12 @@
                             Source="favorite.png"
                             VerticalOptions="Start"
                             WidthRequest="45">
-                            <Image.Behaviors>
-                                <toolkit:IconTintColorBehavior TintColor="{Binding Source={x:Reference favoriteIcon}, Path=IsVisible, Converter={StaticResource isFavoriteToColorConverter}}" />
-                            </Image.Behaviors>
-                        </Image>
-
-                        <Label
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="{Binding Source={x:Reference favoriteIcon}, Path=IsVisible, Converter={StaticResource isFavoriteToColorConverter}}" />
+                        </Image.Behaviors>
+                    </Image>
+                    
+                    <Label
                             Grid.Row="1"
                             Margin="20,5,20,40"
                             FontSize="16"
@@ -115,11 +91,8 @@
                             Text="{Binding Title}"
                             TextColor="Black"
                             VerticalOptions="Center" />
-                    </Grid>
-                </SwipeView>
-
+                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-    <!--</RefreshView>-->
 </ContentPage>

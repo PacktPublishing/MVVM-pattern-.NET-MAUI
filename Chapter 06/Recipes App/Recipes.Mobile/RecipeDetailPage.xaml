@@ -13,7 +13,6 @@
         <conv:RatingToColorConverter x:Key="ratingToColorConverter" />
         <conv:RatingAndReviewsToColorConverter x:Key="ratingAndReviewsToColorConverter" />
         <conv:InverseBoolConverter x:Key="inverseBoolConverter" />
-        <conv:DoNothingConverter x:Key="doNothingConverter" />
         <toolkit:ListToStringConverter x:Key="listToStringConverter" Separator=", " />
         <toolkit:BoolToObjectConverter
             x:Key="isFavoriteToColorConverter"
@@ -89,14 +88,14 @@
                         <Label
                             FontFamily="MaterialIconsRegular"
                             FontSize="18"
-                            Text="{Binding RatingDetail.MaxRating, Converter={StaticResource ratingToStarsConverter}}">
+                            Text="{Binding RatingSummary.MaxRating, Converter={StaticResource ratingToStarsConverter}}">
                             <Label.TextColor>
                                 <MultiBinding
                                     Converter="{StaticResource ratingAndReviewsToColorConverter}"
                                     ConverterParameter="background"
                                     TargetNullValue="{x:Static Colors.HotPink}">
-                                    <Binding Path="RatingDetail.TotalReviews" />
-                                    <Binding Path="RatingDetail.AverageRating" />
+                                    <Binding Path="RatingSummary.TotalReviews" />
+                                    <Binding Path="RatingSummary.AverageRating" />
                                 </MultiBinding>
                             </Label.TextColor>
                         </Label>
@@ -104,18 +103,18 @@
                         <Label
                             FontFamily="MaterialIconsRegular"
                             FontSize="18"
-                            Text="{Binding RatingDetail.AverageRating, Converter={StaticResource ratingToStarsConverter}}">
+                            Text="{Binding RatingSummary.AverageRating, Converter={StaticResource ratingToStarsConverter}}">
                             <Label.TextColor>
                                 <MultiBinding Converter="{StaticResource ratingAndReviewsToColorConverter}">
-                                    <Binding Path="RatingDetail.TotalReviews" />
-                                    <Binding Path="RatingDetail.AverageRating" />
+                                    <Binding Path="RatingSummary.TotalReviews" />
+                                    <Binding Path="RatingSummary.AverageRating" />
                                 </MultiBinding>
                             </Label.TextColor>
                         </Label>
                     </Grid>
                     <Label
                         FontSize="8"
-                        Text="{Binding RatingDetail.AverageRating, StringFormat='{0:0.#} avg. rating', FallbackValue='Ratings not available', TargetNullValue='No ratings yet'}"
+                        Text="{Binding RatingSummary.AverageRating, StringFormat='{0:0.#} avg. rating', FallbackValue='Ratings not available', TargetNullValue='No ratings yet'}"
                         VerticalOptions="End" />
                     <HorizontalStackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Ratings_Tapped" />
@@ -158,8 +157,6 @@
                 </HorizontalStackLayout>
                 <Label IsVisible="{Binding HideAllergenInformation, Mode=OneWay, Converter={StaticResource inverseBoolConverter}}" Text="{Binding Allergens, Converter={StaticResource listToStringConverter}}" />
             </VerticalStackLayout>
-
-
 
             <VerticalStackLayout Padding="10">
                 <Label
@@ -205,7 +202,6 @@
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
-
 
                 <VerticalStackLayout Margin="10,0" Padding="10">
                     <Label

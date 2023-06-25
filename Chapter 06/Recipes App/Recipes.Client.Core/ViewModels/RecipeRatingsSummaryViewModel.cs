@@ -14,9 +14,4 @@ public class RecipeRatingsSummaryViewModel : ObservableObject
         AverageRating = averageRating;
         MaxRating = maxRating;
     }
-
-    public RecipeRatingsSummaryViewModel()
-    {
-    
-    }
 }

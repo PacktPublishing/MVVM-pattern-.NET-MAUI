@@ -21,16 +21,16 @@ public class IngredientsListViewModel : ObservableObject
     {
         Ingredients = new()
             {
-                new (new("Olive oil"), .5, "Cup"),
-                new (new("Garlic (gloves)"), 4),
-                new (new("Baguette"), 1),
-                new (new("Lemon Juice"), .25, "Cup"),
-                new (new("Parmesan cheese (grated)"), 4, "Ounce"),
-                new (new("Anchovies"), 1),
-                new (new("Egg"), 2),
-                new (new("Black pepper"), .25, "Teaspoon"),
-                new (new("Salt"), .5,  "Teaspoon"),
-                new (new("Romaine lettuce"), 4)
+                new ("Olive oil", .5, "Cup"),
+                new ("Garlic (gloves)", 4),
+                new ("Baguette", 1),
+                new ("Lemon Juice", .25, "Cup"),
+                new ("Parmesan cheese (grated)", 4, "Ounce"),
+                new ("Anchovies", 1),
+                new ("Egg", 2),
+                new ("Black pepper", .25, "Teaspoon"),
+                new ("Salt", .5,  "Teaspoon"),
+                new ("Romaine lettuce", 4)
             };
     }
 

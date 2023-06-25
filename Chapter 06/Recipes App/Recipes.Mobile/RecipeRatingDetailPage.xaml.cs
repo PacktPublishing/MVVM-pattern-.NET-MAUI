@@ -7,6 +7,6 @@ public partial class RecipeRatingDetailPage : ContentPage
 	public RecipeRatingDetailPage()
 	{
 		InitializeComponent();
-		BindingContext = new RecipeRatingsDetailViewModel("", "Classic Caesar Salad", 15);
+		BindingContext = new RecipeRatingsDetailViewModel();
 	}
 }

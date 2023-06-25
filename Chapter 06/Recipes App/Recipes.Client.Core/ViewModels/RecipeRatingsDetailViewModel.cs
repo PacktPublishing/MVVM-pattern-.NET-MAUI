@@ -1,12 +1,14 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Recipes.Client.Core.ViewModels;
 
-public class RecipeRatingsDetailViewModel : RecipeRatingsSummaryViewModel
+public class RecipeRatingsDetailViewModel : ObservableObject
 {
-    readonly string recipeId;
+    public string RecipeTitle { get; } = "Classic Caesar Salad";
+
     List<UserReviewViewModel> _reviews = new();
     public List<UserReviewViewModel> Reviews
     {
@@ -21,28 +23,20 @@ public class RecipeRatingsDetailViewModel : RecipeRatingsSummaryViewModel
         private set => SetProperty(ref _groupedReviews, value);
     }
 
-
-    public string RecipeTitle { get; }
-
     public ObservableCollection<object> SelectedReviews { get; } = new();
+
     public RelayCommand ReportReviewCommand { get; }
 
-    public RecipeRatingsDetailViewModel(string recipeId, string recipeTitle,
-        int totalReviews, double? avgRating = null, double maxRating = 4d)
-        : base(totalReviews, avgRating,maxRating)
+    public RecipeRatingsDetailViewModel()
     {
-        this.recipeId = recipeId;
-        RecipeTitle = recipeTitle;
-
         Reviews = new()
         {
-            new ("Anthony Paul Newman", 4d),
+            new ("Anthony Patrick Newman", 4d),
             new ("Laura Madison", 2.5d, "Very basic recipe, I prefer it with some chicken"),
             new ("Nathan Blake", 4d),
             new ("Kathleen Nicole", 3d, "Tasty salad!"),
             new ("Bradley Stewart", 1d, "I hate it, sorry."),
             new ("Geraldine Naomi Briggs", 2d),
-            new ("Megan Bright", 3.2d),
         };
 
         GroupedReviews = Reviews.GroupBy(r => Math.Round(r.Rating / .5) * .5)

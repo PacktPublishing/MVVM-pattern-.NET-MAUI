@@ -17,7 +17,6 @@ public class RecipesOverviewViewModel : ObservableObject
                 new ("7", "Pad Thai",true)
             };
 
-    public IEnumerable<IGrouping<string, RecipeListItemViewModel>> GroupedRecipes { get; set; }
     public ObservableCollection<RecipeListItemViewModel> Recipes { get; }
 
     RecipeListItemViewModel? _selectedRecipe;
@@ -27,7 +26,6 @@ public class RecipesOverviewViewModel : ObservableObject
         set => SetProperty(ref _selectedRecipe, value);
     }
 
-
     public int TotalNumberOfRecipes { get; } = 404;
 
     public AsyncRelayCommand TryLoadMoreItemsCommand { get; }
@@ -35,12 +33,9 @@ public class RecipesOverviewViewModel : ObservableObject
 
     public RecipesOverviewViewModel()
     {
-        Recipes = new ObservableCollection<RecipeListItemViewModel>(items);
-
-        //GroupedRecipes = Recipes.GroupBy(r => r.Title.Substring(0, 1)).ToList();
+        Recipes = new ObservableCollection<RecipeListItemViewModel>(items);;
         TryLoadMoreItemsCommand = new AsyncRelayCommand(TryLoadMoreItems);
         NavigateToSelectedDetailCommand = new AsyncRelayCommand(NavigateToSelectedDetail);
-        //RefreshListCommand = new AsyncRelayCommand(RefreshList);
     }
 
     private Task NavigateToSelectedDetail()
@@ -51,25 +46,6 @@ public class RecipesOverviewViewModel : ObservableObject
             SelectedRecipe = null;
         }
         return Task.CompletedTask;
-    }
-
-    public AsyncRelayCommand RefreshListCommand { get; }
-    
-
-    private async Task RefreshList()
-    {
-        Recipes.Clear();
-        foreach (var item in items)
-        {
-            Recipes.Add(item);
-        }
-    }
-    private bool isListLoading;
-
-    public bool IsListLoading
-    {
-        get => isListLoading;
-        set => SetProperty(ref isListLoading, value);
     }
 
     private async Task TryLoadMoreItems()
