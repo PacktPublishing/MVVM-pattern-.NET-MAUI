@@ -19,7 +19,6 @@
     </ContentPage.Resources>
     <CollectionView
         BackgroundColor="{StaticResource Primary}"
-        EmptyView="{Binding}"
         Footer="We ran out of recipes..."
         Header="{Binding}"
         ItemsSource="{Binding Recipes}"

@@ -19,7 +19,6 @@
     </ContentPage.Resources>
     <CollectionView
         BackgroundColor="{StaticResource Primary}"
-        EmptyView="{Binding}"
         Footer="We ran out of recipes..."
         Header="{Binding}"
         ItemsSource="{Binding Recipes}"
@@ -64,8 +63,8 @@
                         x:Name="favoriteIcon"
                         Margin="5"
                         HeightRequest="45"
-                        IsVisible="{Binding IsFavorite}"
                         HorizontalOptions="End"
+                        IsVisible="{Binding IsFavorite}"
                         Source="favorite.png"
                         VerticalOptions="Start"
                         WidthRequest="45">
