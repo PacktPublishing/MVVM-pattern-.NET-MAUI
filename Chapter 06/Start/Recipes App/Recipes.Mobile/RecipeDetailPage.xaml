@@ -37,7 +37,7 @@
                 <Label
                     FontAttributes="Bold"
                     FontSize="22"
-                    Text="{Binding Path=Title}"
+                    Text="{Binding Path=Title, Mode=OneTime}"
                     VerticalOptions="Center" />
                 <Image
                     x:Name="favoriteIcon"

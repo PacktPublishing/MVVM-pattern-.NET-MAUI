@@ -33,8 +33,8 @@ public partial class RecipeDetailViewModel : ObservableObject
         set => SetProperty(ref _hideAllergenInformation, value);
     }
 
-    private bool? _isFavorite = false;
-    public bool? IsFavorite
+    private bool _isFavorite = false;
+    public bool IsFavorite
     {
         get => _isFavorite;
         private set
@@ -82,10 +82,10 @@ public partial class RecipeDetailViewModel : ObservableObject
     }
 
     private void AddAsFavorite() => IsFavorite = true;
-    private bool CanAddAsFavorite() => IsFavorite.HasValue && !IsFavorite.Value;
+    private bool CanAddAsFavorite() => !IsFavorite;
 
     private void RemoveAsFavorite() => IsFavorite = false;
-    private bool CanRemoveAsFavorite() => IsFavorite.HasValue && IsFavorite.Value;
+    private bool CanRemoveAsFavorite() => IsFavorite;
 
     private void UserIsBrowsing()
     {

@@ -40,8 +40,8 @@ public partial class RecipeDetailViewModel : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(AddAsFavoriteCommand))]
     [NotifyCanExecuteChangedFor(nameof(RemoveAsFavoriteCommand))]
     [NotifyCanExecuteChangedFor(nameof(SetFavoriteCommand))]
-    private bool? _isFavorite = false;
-    //public bool? IsFavorite
+    private bool _isFavorite = false;
+    //public bool IsFavorite
     //{
     //    get => _isFavorite;
     //    private set
@@ -103,8 +103,8 @@ public partial class RecipeDetailViewModel : ObservableObject
     }
 
     private bool CanAddAsFavorite()
-        => IsFavorite.HasValue && !IsFavorite.Value;
+        => !IsFavorite;
 
     private bool CanRemoveAsFavorite()
-        => IsFavorite.HasValue && IsFavorite.Value;
+        => IsFavorite;
 }

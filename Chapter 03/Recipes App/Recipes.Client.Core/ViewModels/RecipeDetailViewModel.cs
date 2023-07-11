@@ -22,8 +22,8 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
         }
     }
 
-    private bool? _isFavorite = false;
-    public bool? IsFavorite
+    private bool _isFavorite = false;
+    public bool IsFavorite
     {
         get => _isFavorite;
         private set
@@ -77,9 +77,9 @@ public class RecipeDetailViewModel : INotifyPropertyChanged
     private void RemoveAsFavorite() => IsFavorite = false;
 
     private bool CanAddAsFavorite()
-        => IsFavorite.HasValue && !IsFavorite.Value;
+        => !IsFavorite;
     private bool CanRemoveAsFavorite()
-        => IsFavorite.HasValue && IsFavorite.Value;
+        => IsFavorite;
 
     public void OnPropertyChanged([CallerMemberName] string? propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
