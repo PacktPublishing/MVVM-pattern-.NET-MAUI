@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Recipes.Mobile.Controls.FavoriteControlTemplated"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Recipes.Mobile.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root">
+    <ContentView.Resources>
+        <toolkit:BoolToObjectConverter
+            x:Key="isFavoriteToColorConverter"
+            x:TypeArguments="Color"
+            FalseObject="#E9E9E9E9"
+            TrueObject="#FF0000" />
+        <ControlTemplate x:Key="DefaultTemplate">
+            <Grid>
+                <Image
+                    HeightRequest="{Binding HeightRequest, Source={x:Reference TemplatedParent}}"
+                    IsVisible="{Binding IsInteractive, Source={RelativeSource TemplatedParent}}"
+                    Scale="1.2"
+                    Source="{Binding Source, Source={x:Reference scalableContent}}"
+                    WidthRequest="{Binding WidthRequest, Source={x:Reference scalableContent}}" />
+                <Image
+                    x:Name="scalableContent"
+                    HeightRequest="{Binding HeightRequest, Source={RelativeSource TemplatedParent}}"
+                    Source="favorite.png"
+                    WidthRequest="{Binding WidthRequest, Source={RelativeSource TemplatedParent}}">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{Binding IsFavorite, Source={x:Reference root}, Converter={StaticResource isFavoriteToColorConverter}}" />
+                    </Image.Behaviors>
+                </Image>
+            </Grid>
+        </ControlTemplate>
+    </ContentView.Resources>
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+    </ContentView.GestureRecognizers>
+</ContentView>

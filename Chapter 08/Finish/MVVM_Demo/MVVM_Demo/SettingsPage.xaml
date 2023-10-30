@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MVVM_Demo.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Settings">
+    <VerticalStackLayout Padding="10">
+        <Label
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            Text="Manager your settings here"
+            VerticalOptions="Center" />
+        <HorizontalStackLayout>
+            <Label Text="Allow Push Notifications" VerticalOptions="Center" />
+            <Switch Margin="10,0" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Preffered Language" VerticalOptions="Center" />
+            <Picker Margin="10,0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>English</x:String>
+                        <x:String>Nederlands</x:String>
+                        <x:String>français</x:String>
+                        <x:String>Deutsch</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </HorizontalStackLayout>
+        <Button HorizontalOptions="Center" Text="About" Clicked="Button_Clicked" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,934 @@
+[
+  {
+    "Id": "1",
+    "Name": "Classic Caesar Salad",
+    "Allergens": [ "Milk", "Eggs", "Nuts", "Sesame" ],
+    "Ingredients": [
+      {
+        "IngredientName": "Olive oil",
+        "BaseAmount": 0.5,
+        "Measurement": "Cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Garlic (gloves)",
+        "BaseAmount": 4,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Baguette",
+        "BaseAmount": 1,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Lemon Juice",
+        "BaseAmount": 0.25,
+        "Measurement": "Cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Parmesan cheese (grated)",
+        "BaseAmount": 4,
+        "Measurement": "Ounce",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Anchovies",
+        "BaseAmount": 1,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Egg",
+        "BaseAmount": 2,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Black pepper",
+        "BaseAmount": 0.25,
+        "Measurement": "Teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Salt",
+        "BaseAmount": 0.5,
+        "Measurement": "Teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Romaine lettuce",
+        "BaseAmount": 4,
+        "Measurement": "",
+        "BaseServings": 4
+      }
+    ],
+    "Instructions": [
+      {
+        "Text": "Preheat your oven to 350\u00B0F (175\u00B0C). Place the baguette slices on a baking sheet and drizzle them with olive oil. Bake for about 10 minutes or until they are crispy and golden brown. Set aside to cool.",
+        "IsNote": false,
+        "Index": 1
+      },
+      {
+        "Text": "In a small skillet, heat 2 tablespoons of olive oil over medium heat. Add the minced garlic and cook for about 1-2 minutes until fragrant. Remove from heat and let it cool.",
+        "IsNote": false,
+        "Index": 2
+      },
+      {
+        "Text": "In a small bowl, whisk together the lemon juice, grated Parmesan cheese, minced anchovies (if using), and the cooled garlic-oil mixture. Set aside.",
+        "IsNote": false,
+        "Index": 3
+      },
+      {
+        "Text": "Fill a medium-sized saucepan with water and bring it to a boil. Gently place the eggs into the boiling water and cook for 4-5 minutes for soft-boiled eggs or 9-10 minutes for hard-boiled eggs. Once cooked, remove the eggs from the boiling water and place them in a bowl of ice water to cool. Once cool, peel the eggs and set them aside.",
+        "IsNote": false,
+        "Index": 4
+      },
+      {
+        "Text": "In a large salad bowl, add the torn romaine lettuce leaves. Pour the dressing over the lettuce and toss to coat evenly. Season with salt and freshly ground black pepper to taste.",
+        "IsNote": false,
+        "Index": 5
+      },
+      {
+        "Text": "To add a smoky flavor to your Caesar Salad, try grilling the romaine lettuce for a few minutes on each side before tearing it into bite-sized pieces.",
+        "IsNote": true,
+        "Index": null
+      },
+      {
+        "Text": "Break the baguette slices into smaller pieces and add them to the salad. Toss gently to combine.",
+        "IsNote": false,
+        "Index": 6
+      },
+      {
+        "Text": "Cut the peeled eggs into halves or quarters and place them on top of the salad.",
+        "IsNote": false,
+        "Index": 7
+      },
+      {
+        "Text": "Finally, sprinkle some additional grated Parmesan cheese on top as a garnish.",
+        "IsNote": false,
+        "Index": 8
+      }
+    ],
+    "LastUpdated": "2020-07-03T00:00:00",
+    "Author": "Sally Burton",
+    "Image": "caesarsalad.png",
+    "Calories": 240,
+    "ReadyInMinutes": 30
+  },
+  {
+    "Id": "2",
+    "Name": "Belgian Waffles",
+    "Allergens": [ "Milk", "Eggs", "Wheat" ],
+    "Ingredients": [
+      {
+        "IngredientName": "All-purpose flour",
+        "BaseAmount": 2,
+        "Measurement": "Cups",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Granulated sugar",
+        "BaseAmount": 2,
+        "Measurement": "Tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Baking powder",
+        "BaseAmount": 2,
+        "Measurement": "Teaspoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Salt",
+        "BaseAmount": 0.5,
+        "Measurement": "Teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Parmesan cheese (grated)",
+        "BaseAmount": 4,
+        "Measurement": "Ounce",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Large eggs",
+        "BaseAmount": 2,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Milk",
+        "BaseAmount": 1.75,
+        "Measurement": "Cups",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Unsalted butter (melted)",
+        "BaseAmount": 0.5,
+        "Measurement": "Cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Vanilla extract",
+        "BaseAmount": 0.5,
+        "Measurement": "Teaspoon",
+        "BaseServings": 4
+      }
+    ],
+    "Instructions": [
+      {
+        "Text": "Preheat your waffle iron according to the manufacturer's instructions.",
+        "IsNote": false,
+        "Index": 1
+      },
+      {
+        "Text": "In a large mixing bowl, whisk together the flour, sugar, baking powder, and salt.",
+        "IsNote": false,
+        "Index": 2
+      },
+      {
+        "Text": "In a separate bowl, beat the eggs. Then add the milk, melted butter, and vanilla extract. Whisk until well combined.",
+        "IsNote": false,
+        "Index": 3
+      },
+      {
+        "Text": "Pour the wet ingredients into the dry ingredients and gently stir until just combined. Be careful not to overmix; a few lumps are okay.",
+        "IsNote": false,
+        "Index": 4
+      },
+      {
+        "Text": "Lightly grease the waffle iron with non-stick cooking spray or brush it with melted butter.",
+        "IsNote": false,
+        "Index": 5
+      },
+      {
+        "Text": "Pour a portion of the batter onto the preheated waffle iron, using an appropriate amount according to your waffle iron's instructions. Close the lid and cook until the waffle is golden brown and crisp.",
+        "IsNote": false,
+        "Index": 6
+      },
+      {
+        "Text": "Carefully remove the waffle from the iron and repeat with the remaining batter.",
+        "IsNote": false,
+        "Index": 7
+      },
+      {
+        "Text": "To keep the cooked waffles warm and crispy, place them on a wire rack in a preheated oven at a low temperature (around 200°F/93°C) while you finish cooking the remaining waffles. Avoid stacking the waffles directly on top of each other, as they may become soggy.",
+        "IsNote": true,
+        "Index": null
+      },
+      {
+        "Text": "Serve the Belgian waffles warm with your choice of toppings such as fresh fruits, whipped cream, maple syrup, or chocolate sauce.",
+        "IsNote": false,
+        "Index": 8
+      }
+    ],
+    "LastUpdated": "2021-12-12T00:00:00",
+    "Author": "Mrs. Andalouse",
+    "Image": "waffle.png",
+    "Calories": 350,
+    "ReadyInMinutes": 20
+  },
+  {
+    "Id": "3",
+    "Name": "Chicken Parmesan",
+    "Allergens": [ "Dairy", "Eggs", "Wheat" ],
+    "Ingredients": [
+      {
+        "IngredientName": "Boneless, skinless chicken breasts",
+        "BaseAmount": 4,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Salt and pepper",
+        "BaseAmount": 1,
+        "Measurement": "to taste",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "All-purpose flour",
+        "BaseAmount": 1,
+        "Measurement": "Cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Large eggs (beaten)",
+        "BaseAmount": 2,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Breadcrumbs",
+        "BaseAmount": 2,
+        "Measurement": "Cups",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Parmesan cheese (grated)",
+        "BaseAmount": 0.5,
+        "Measurement": "Cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Dried basil",
+        "BaseAmount": 0.5,
+        "Measurement": "Teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Dried oregano",
+        "BaseAmount": 0.5,
+        "Measurement": "Teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Garlic powder",
+        "BaseAmount": 0.5,
+        "Measurement": "Teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Red pepper flakes",
+        "BaseAmount": 0.25,
+        "Measurement": "Teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Vegetable oil",
+        "BaseAmount": 0.25,
+        "Measurement": "Cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Marinara sauce",
+        "BaseAmount": 1.5,
+        "Measurement": "Cups",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Mozzarella cheese (shredded)",
+        "BaseAmount": 1,
+        "Measurement": "Cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Fresh basil leaves",
+        "BaseAmount": 4,
+        "Measurement": "",
+        "BaseServings": 4
+      }
+    ],
+    "Instructions": [
+      {
+        "Text": "Preheat your oven to 375°F (190°C).",
+        "IsNote": false,
+        "Index": 1
+      },
+      {
+        "Text": "Season the chicken breasts with salt and pepper on both sides.",
+        "IsNote": false,
+        "Index": 2
+      },
+      {
+        "Text": "Set up three shallow bowls: one with flour, one with beaten eggs, and one with a mixture of breadcrumbs, grated Parmesan cheese, dried basil, dried oregano, garlic powder, and red pepper flakes (if using).",
+        "IsNote": false,
+        "Index": 3
+      },
+      {
+        "Text": "Dip each chicken breast into the flour, shaking off any excess. Then dip it into the beaten eggs, allowing any excess to drip off. Finally, coat the chicken in the breadcrumb mixture, pressing gently to adhere.",
+        "IsNote": false,
+        "Index": 4
+      },
+      {
+        "Text": "Heat the vegetable oil in a large skillet over medium heat. Add the breaded chicken breasts and cook until golden brown on both sides, about 3-4 minutes per side. You may need to cook them in batches to avoid overcrowding the pan.",
+        "IsNote": false,
+        "Index": 5
+      },
+      {
+        "Text": "Remove the chicken breasts from the skillet and place them on a baking sheet. Spoon a generous amount of marinara sauce over each chicken breast, spreading it evenly.",
+        "IsNote": false,
+        "Index": 6
+      },
+      {
+        "Text": "Sprinkle the shredded mozzarella cheese over the top of each chicken breast.",
+        "IsNote": false,
+        "Index": 7
+      },
+      {
+        "Text": "Bake in the preheated oven for 20-25 minutes, or until the chicken is cooked through and the cheese is melted and bubbly.",
+        "IsNote": false,
+        "Index": 8
+      },
+      {
+        "Text": "For a crispier coating, you can lightly spray or drizzle the breaded chicken breasts with olive oil before baking.",
+        "IsNote": true,
+        "Index": null
+      },
+      {
+        "Text": "Remove from the oven and let the chicken rest for a few minutes before serving.",
+        "IsNote": false,
+        "Index": 9
+      },
+      {
+        "Text": "Remove from the oven and let the chicken rest for a few minutes before serving.",
+        "IsNote": false,
+        "Index": 10
+      }
+    ],
+    "LastUpdated": "2022-03-09T00:00:00",
+    "Author": "Gerald Verlock",
+    "Image": null,
+    "Calories": 450,
+    "ReadyInMinutes": 40
+  },
+  {
+    "Id": "4",
+    "Name": "Moules-Frites",
+    "Allergens": [ "Shellfish", "Dairy" ],
+    "Ingredients": [
+      {
+        "IngredientName": "Fresh mussels",
+        "BaseAmount": 4,
+        "Measurement": "pounds",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Dry white wine",
+        "BaseAmount": 1,
+        "Measurement": "cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Shallots (minced)",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Garlic cloves (minced)",
+        "BaseAmount": 2,
+        "Measurement": "cloves",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Unsalted butter",
+        "BaseAmount": 4,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Fresh parsley (chopped)",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Salt",
+        "BaseAmount": 1,
+        "Measurement": "teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Black pepper",
+        "BaseAmount": 1,
+        "Measurement": "teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Potatoes",
+        "BaseAmount": 4,
+        "Measurement": "large",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Vegetable oil",
+        "BaseAmount": 0.25,
+        "Measurement": "cup",
+        "BaseServings": 4
+      }
+    ],
+    "Instructions": [
+      {
+        "Text": "Scrub the mussels and remove any beards or debris. Discard any mussels that are cracked or do not close when tapped.",
+        "IsNote": false,
+        "Index": 1
+      },
+      {
+        "Text": "In a large pot or Dutch oven, melt the butter over medium heat. Add the minced shallots and garlic and sauté for 2-3 minutes until softened and fragrant.",
+        "IsNote": false,
+        "Index": 2
+      },
+      {
+        "Text": "Pour in the white wine and bring it to a simmer.",
+        "IsNote": false,
+        "Index": 3
+      },
+      {
+        "Text": "Add the mussels to the pot, season with salt and pepper, and give everything a good stir. Cover the pot and cook for about 5-7 minutes, or until the mussels have opened. Discard any mussels that remain closed.",
+        "IsNote": false,
+        "Index": 4
+      },
+      {
+        "Text": "While the mussels are cooking, prepare the fries. Peel and cut the potatoes into thick matchstick shapes or desired thickness.",
+        "IsNote": false,
+        "Index": 5
+      },
+      {
+        "Text": "Heat the vegetable oil in a deep fryer or large pot to about 350°F (175°C). Fry the potatoes in batches until golden brown and crispy, about 4-5 minutes per batch. Remove the fries from the oil and drain on paper towels.",
+        "IsNote": false,
+        "Index": 6
+      },
+      {
+        "Text": "Sprinkle the chopped parsley over the cooked mussels.",
+        "IsNote": false,
+        "Index": 7
+      },
+      {
+        "Text": "Serve the moules-frites in large bowls, with the mussels and broth on one side and the crispy fries on the other.",
+        "IsNote": false,
+        "Index": 8
+      }
+    ],
+    "LastUpdated": "2021-06-05T00:00:00",
+    "Author": "Nigel Pence",
+    "Image": "moules",
+    "Calories": 550,
+    "ReadyInMinutes": 30
+  },
+  {
+    "Id": "5",
+    "Name": "Spaghetti Carbonara",
+    "Allergens": [ "Eggs", "Dairy" ],
+    "Ingredients": [
+      {
+        "IngredientName": "Spaghetti",
+        "BaseAmount": 12,
+        "Measurement": "ounces",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Bacon, diced",
+        "BaseAmount": 8,
+        "Measurement": "ounces",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Eggs",
+        "BaseAmount": 4,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Parmesan cheese (grated)",
+        "BaseAmount": 1,
+        "Measurement": "cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Black pepper",
+        "BaseAmount": 1,
+        "Measurement": "teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Salt",
+        "BaseAmount": 1,
+        "Measurement": "teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Olive oil",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Garlic cloves (minced)",
+        "BaseAmount": 2,
+        "Measurement": "cloves",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Fresh parsley (chopped)",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      }
+    ],
+    "Instructions": [
+      {
+        "Text": "Cook the spaghetti according to the package instructions until al dente. Drain and set aside.",
+        "IsNote": false,
+        "Index": 1
+      },
+      {
+        "Text": "In a large skillet, cook the diced bacon over medium heat until crispy. Remove the bacon from the skillet and set it aside on a paper towel-lined plate to drain excess grease.",
+        "IsNote": false,
+        "Index": 2
+      },
+      {
+        "Text": "In a mixing bowl, whisk together the eggs, grated Parmesan cheese, black pepper, and salt until well combined.",
+        "IsNote": false,
+        "Index": 3
+      },
+      {
+        "Text": "In the same skillet used for the bacon, heat the olive oil over medium heat. Add the minced garlic and sauté for about 1 minute until fragrant.",
+        "IsNote": false,
+        "Index": 4
+      },
+      {
+        "Text": "Add the cooked spaghetti to the skillet with the garlic, and toss to coat the spaghetti evenly with the olive oil.",
+        "IsNote": false,
+        "Index": 5
+      },
+      {
+        "Text": "Remove the skillet from the heat and pour the egg mixture over the spaghetti. Quickly stir the spaghetti to evenly coat it with the egg mixture. The heat from the spaghetti will cook the eggs, creating a creamy sauce.",
+        "IsNote": false,
+        "Index": 6
+      },
+      {
+        "Text": "Be cautious when adding the egg mixture to the cooked spaghetti. To prevent the eggs from scrambling, remove the skillet from the heat before pouring the mixture. Additionally, it's crucial to quickly toss the spaghetti with the egg mixture to evenly coat it. The residual heat from the pasta will gently cook the eggs, resulting in a creamy sauce.",
+        "IsNote": true,
+        "Index": null
+      },
+      {
+        "Text": "Add the crispy bacon to the skillet and toss everything together until well combined.",
+        "IsNote": false,
+        "Index": 7
+      },
+      {
+        "Text": "Garnish with chopped fresh parsley.",
+        "IsNote": false,
+        "Index": 8
+      },
+      {
+        "Text": "Serve the spaghetti carbonara immediately, while it's still hot.",
+        "IsNote": false,
+        "Index": 9
+      }
+    ],
+    "LastUpdated": "2021-09-01T00:00:00",
+    "Author": "Luigi",
+    "Image": "carbonara",
+    "Calories": 650,
+    "ReadyInMinutes": 20
+  },
+  {
+    "Id": "6",
+    "Name": "Chicken Stir-Fry",
+    "Allergens": [ "Soy", "Nuts" ],
+    "Ingredients": [
+      {
+        "IngredientName": "Boneless, skinless chicken breasts",
+        "BaseAmount": 1,
+        "Measurement": "pound",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Vegetable oil",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Garlic cloves (minced)",
+        "BaseAmount": 3,
+        "Measurement": "cloves",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Fresh ginger (grated)",
+        "BaseAmount": 1,
+        "Measurement": "tablespoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Mixed vegetables",
+        "BaseAmount": 4,
+        "Measurement": "cups",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Soy sauce",
+        "BaseAmount": 3,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Oyster sauce",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Cornstarch",
+        "BaseAmount": 1,
+        "Measurement": "tablespoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Water",
+        "BaseAmount": 1,
+        "Measurement": "cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Salt",
+        "BaseAmount": 1,
+        "Measurement": "teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Black pepper",
+        "BaseAmount": 1,
+        "Measurement": "teaspoon",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Cashews (chopped)",
+        "BaseAmount": 1,
+        "Measurement": "cup",
+        "BaseServings": 4
+      }
+    ],
+    "Instructions": [
+      {
+        "Text": "Cut the chicken breasts into thin, bite-sized strips.",
+        "IsNote": false,
+        "Index": 1
+      },
+      {
+        "Text": "In a large skillet or wok, heat the vegetable oil over medium-high heat.",
+        "IsNote": false,
+        "Index": 2
+      },
+      {
+        "Text": "Add the minced garlic and grated ginger to the skillet and stir-fry for about 30 seconds until fragrant.",
+        "IsNote": false,
+        "Index": 3
+      },
+      {
+        "Text": "Add the chicken strips to the skillet and cook until they are browned and cooked through, about 5-6 minutes.",
+        "IsNote": false,
+        "Index": 4
+      },
+      {
+        "Text": "Add the chicken strips to the skillet and cook until they are browned and cooked through, about 5-6 minutes.",
+        "IsNote": false,
+        "Index": 5
+      },
+      {
+        "Text": "In the same skillet, add the mixed vegetables and stir-fry for about 4-5 minutes until they are crisp-tender.",
+        "IsNote": false,
+        "Index": 6
+      },
+      {
+        "Text": "In a small bowl, whisk together the soy sauce, oyster sauce, cornstarch, water, salt, and black pepper until well combined.",
+        "IsNote": false,
+        "Index": 7
+      },
+      {
+        "Text": "Push the vegetables to one side of the skillet and pour the sauce mixture into the cleared space. Stir the sauce until it thickens and becomes glossy.",
+        "IsNote": false,
+        "Index": 8
+      },
+      {
+        "Text": "Return the cooked chicken to the skillet and toss everything together until the chicken and vegetables are evenly coated with the sauce.",
+        "IsNote": false,
+        "Index": 9
+      },
+      {
+        "Text": "If desired, stir in the chopped cashews for added crunch and flavor.",
+        "IsNote": false,
+        "Index": 10
+      },
+      {
+        "Text": "Cook for an additional 1-2 minutes until everything is heated through.",
+        "IsNote": false,
+        "Index": 11
+      },
+      {
+        "Text": "Cook for an additional 1-2 minutes until everything is heated through.",
+        "IsNote": false,
+        "Index": 12
+      }
+    ],
+    "LastUpdated": "2020-10-09T00:00:00",
+    "Author": "Maddie Lincoln",
+    "Image": "stirfry",
+    "Calories": 350,
+    "ReadyInMinutes": 20
+  },
+  {
+    "Id": "7",
+    "Name": "Pad Thai",
+    "Allergens": [ "Fish", "Peanuts" ],
+    "Ingredients": [
+      {
+        "IngredientName": "Rice noodles",
+        "BaseAmount": 8,
+        "Measurement": "ounces",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Vegetable oil",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Garlic cloves (minced)",
+        "BaseAmount": 3,
+        "Measurement": "cloves",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Shrimp (peeled)",
+        "BaseAmount": 8,
+        "Measurement": "ounces",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Firm tofu (cubed)",
+        "BaseAmount": 8,
+        "Measurement": "ounces",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Eggs",
+        "BaseAmount": 2,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Bean sprouts",
+        "BaseAmount": 1,
+        "Measurement": "cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Green onions, chopped",
+        "BaseAmount": 1,
+        "Measurement": "cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Lime wedges",
+        "BaseAmount": 1,
+        "Measurement": "",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Fish sauce",
+        "BaseAmount": 3,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Sugar",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Tamarind paste",
+        "BaseAmount": 2,
+        "Measurement": "tablespoons",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Roasted peanuts (chopped)",
+        "BaseAmount": 1,
+        "Measurement": "cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Fresh cilantro (chopped)",
+        "BaseAmount": 1,
+        "Measurement": "cup",
+        "BaseServings": 4
+      },
+      {
+        "IngredientName": "Red chili flakes",
+        "BaseAmount": 1,
+        "Measurement": "teaspoon",
+        "BaseServings": 4
+      }
+    ],
+    "Instructions": [
+      {
+        "Text": "Prepare the rice noodles according to the package instructions until they are soft but still slightly firm (al dente). Drain and set aside.",
+        "IsNote": false,
+        "Index": 1
+      },
+      {
+        "Text": "Soak the rice noodles properly. Rice noodles can sometimes become sticky or clump together if not soaked correctly. Follow the instructions on the package for soaking the noodles, usually by placing them in a bowl of hot water until they become pliable but not overly soft.",
+        "IsNote": true,
+        "Index": null
+      },
+      {
+        "Text": "In a large skillet or wok, heat the vegetable oil over medium-high heat.",
+        "IsNote": false,
+        "Index": 2
+      },
+      {
+        "Text": "Add the minced garlic to the skillet and sauté for about 30 seconds until fragrant.",
+        "IsNote": false,
+        "Index": 3
+      },
+      {
+        "Text": "Add the peeled and deveined shrimp to the skillet and cook until they turn pink and are cooked through, about 2-3 minutes. Remove the cooked shrimp from the skillet and set aside.",
+        "IsNote": false,
+        "Index": 4
+      },
+      {
+        "Text": "In the same skillet, add the cubed tofu and stir-fry for about 3-4 minutes until it is lightly browned. Remove the tofu from the skillet and set aside.",
+        "IsNote": false,
+        "Index": 5
+      },
+      {
+        "Text": "Crack the eggs into the skillet and scramble them until they are lightly set.",
+        "IsNote": false,
+        "Index": 6
+      },
+      {
+        "Text": "Add the cooked rice noodles, bean sprouts, and chopped green onions to the skillet. Toss everything together until well combined.",
+        "IsNote": false,
+        "Index": 7
+      },
+      {
+        "Text": "In a small bowl, whisk together the fish sauce, sugar, and tamarind paste until the sugar has dissolved.",
+        "IsNote": false,
+        "Index": 8
+      },
+      {
+        "Text": "Pour the sauce mixture over the noodle mixture in the skillet. Continue to stir-fry for an additional 2-3 minutes until everything is heated through and well coated with the sauce.",
+        "IsNote": false,
+        "Index": 9
+      },
+      {
+        "Text": "Add the cooked shrimp and tofu back to the skillet. Toss everything together until evenly distributed.",
+        "IsNote": false,
+        "Index": 10
+      },
+      {
+        "Text": "Remove the skillet from the heat and squeeze fresh lime juice over the Pad Thai.",
+        "IsNote": false,
+        "Index": 11
+      },
+      {
+        "Text": "Serve the Pad Thai garnished with chopped roasted peanuts, fresh cilantro, and red chili flakes.",
+        "IsNote": false,
+        "Index": 12
+      }
+    ],
+    "LastUpdated": "2020-10-09T00:00:00",
+    "Author": "Gill Clothing",
+    "Image": null,
+    "Calories": 550,
+    "ReadyInMinutes": 30
+  }
+]

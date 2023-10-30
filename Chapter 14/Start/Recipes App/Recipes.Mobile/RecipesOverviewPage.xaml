@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.RecipesOverviewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Recipes.Mobile.Controls"
+    xmlns:conv="clr-namespace:Recipes.Mobile.Converters"
+    Title="Recipes!"
+    BackgroundColor="{StaticResource Primary}"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <conv:RatingToStarsConverter x:Key="ratingToStarsConverter" />
+        <conv:RatingToColorConverter x:Key="ratingToColorConverter" />
+    </ContentPage.Resources>
+    <Grid>
+        <CollectionView
+            BackgroundColor="{StaticResource Primary}"
+            ItemsSource="{Binding Recipes}"
+            RemainingItemsThreshold="5"
+            RemainingItemsThresholdReachedCommand="{Binding TryLoadMoreItemsCommand}"
+            SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}"
+            SelectionChangedCommand="{Binding NavigateToSelectedDetailCommand}"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        BackgroundColor="White"
+                        HorizontalOptions="Fill"
+                        RowDefinitions="200, Auto">
+                        <Image
+                            Aspect="AspectFill"
+                            HorizontalOptions="Fill"
+                            Source="{Binding Image, TargetNullValue=fallback}"
+                            VerticalOptions="Fill" />
+                        <controls:FavoriteControl
+                            Margin="5"
+                            HeightRequest="45"
+                            HorizontalOptions="End"
+                            IsEnabled="False"
+                            IsFavorite="{Binding IsFavorite}"
+                            IsVisible="{Binding IsFavorite}"
+                            VerticalOptions="Start"
+                            WidthRequest="45" />
+                        <Label
+                            Grid.Row="1"
+                            Margin="20,5,20,40"
+                            FontSize="16"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Start"
+                            MaxLines="2"
+                            Text="{Binding Title}"
+                            TextColor="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid
+            BackgroundColor="{StaticResource Primary}"
+            HorizontalOptions="Fill"
+            IsVisible="{Binding LoadFailed}"
+            VerticalOptions="Fill">
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Unable to load recipes" />
+                <Button Command="{Binding ReloadCommand}" Text="Retry" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

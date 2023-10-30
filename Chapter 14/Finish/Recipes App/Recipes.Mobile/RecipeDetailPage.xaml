@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.RecipeDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Recipes.Mobile.Controls"
+    xmlns:conv="clr-namespace:Recipes.Mobile.Converters"
+    xmlns:selectors="clr-namespace:Recipes.Mobile.TemplateSelectors"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:Recipes.Client.Core.ViewModels;assembly=Recipes.Client.Core"
+    x:DataType="vms:RecipeDetailViewModel">
+    <ContentPage.Resources>
+        <conv:RatingToStarsConverter x:Key="ratingToStarsConverter" />
+        <conv:RatingToColorConverter x:Key="ratingToColorConverter" />
+        <conv:RatingAndReviewsToColorConverter x:Key="ratingAndReviewsToColorConverter" />
+        <conv:InverseBoolConverter x:Key="inverseBoolConverter" />
+        <toolkit:ListToStringConverter x:Key="listToStringConverter" Separator=", " />
+        <DataTemplate x:Key="instructionTemplate" x:DataType="vms:InstructionViewModel">
+            <VerticalStackLayout Spacing="10">
+                <Label FontSize="20" Text="{Binding Index, StringFormat='{0:D2}.', Mode=OneTime}" />
+                <Label Margin="10,0" Text="{Binding Description, Mode=OneTime}" />
+            </VerticalStackLayout>
+        </DataTemplate>
+        <DataTemplate x:Key="noteTemplate" x:DataType="vms:NoteViewModel">
+            <Grid Margin="20,0" ColumnDefinitions="35,*">
+                <Label
+                    FontFamily="MaterialIconsRegular"
+                    FontSize="20"
+                    Text="&#xe873;"
+                    TextColor="LightSlateGray" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Italic"
+                    Text="{Binding Note, Mode=OneTime}"
+                    TextColor="LightSlateGray" />
+            </Grid>
+        </DataTemplate>
+        <selectors:InstructionsDataTemplateSelector
+            x:Key="instructionDataTemplateSelector"
+            InstructionTemplate="{StaticResource instructionTemplate}"
+            NoteTemplate="{StaticResource noteTemplate}" />
+        <ControlTemplate x:Key="FavoriteTemplate">
+            <VerticalStackLayout>
+                <Label
+                    FontSize="10"
+                    HorizontalOptions="Center"
+                    Text="Favorite?" />
+                <Switch
+                    x:Name="scalableContent"
+                    HorizontalOptions="Center"
+                    InputTransparent="True"
+                    IsEnabled="{Binding IsInteractive, Source={RelativeSource TemplatedParent}}"
+                    IsToggled="{Binding IsFavorite, Source={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+            </VerticalStackLayout>
+        </ControlTemplate>
+    </ContentPage.Resources>
+    <Grid>
+        <ScrollView>
+            <ScrollView.Behaviors>
+                <toolkit:EventToCommandBehavior Command="{Binding UserIsBrowsingCommand}" EventName="Scrolled" />
+            </ScrollView.Behaviors>
+            <VerticalStackLayout Padding="10" BackgroundColor="GhostWhite">
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="{Binding Path=Title, Mode=OneWay}"
+                        VerticalOptions="Center" />
+
+                    <controls:FavoriteControl
+                        Grid.Column="1"
+                        Margin="5"
+                        HeightRequest="35"
+                        IsFavorite="{Binding IsFavorite, Mode=TwoWay}"
+                        ToggledCommand="{Binding FavoriteToggledCommand}"
+                        VerticalOptions="Center"
+                        WidthRequest="35" />
+
+                    <!--<controls:FavoriteControlTemplated
+                        Grid.Column="1"
+                        Margin="5"
+                        ControlTemplate="{StaticResource FavoriteTemplate}"
+                        IsFavorite="{Binding IsFavorite, Mode=OneWay}"
+                        ToggledCommand="{Binding FavoriteToggledCommand}"
+                        VerticalOptions="Center" />-->
+                </Grid>
+
+                <Label FontSize="8" HorizontalOptions="End">
+                    <Label.Text>
+                        <MultiBinding StringFormat="Last updated: {0:D} | {1}">
+                            <Binding Path="LastUpdated" />
+                            <Binding Path="Author" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Margin="0,0,0,10">
+                        <Grid VerticalOptions="Center">
+                            <Label
+                                FontFamily="MaterialIconsRegular"
+                                FontSize="18"
+                                Text="{Binding RatingSummary.MaxRating, Converter={StaticResource ratingToStarsConverter}}">
+                                <Label.TextColor>
+                                    <MultiBinding
+                                        Converter="{StaticResource ratingAndReviewsToColorConverter}"
+                                        ConverterParameter="background"
+                                        TargetNullValue="{x:Static Colors.HotPink}">
+                                        <Binding Path="RatingSummary.TotalReviews" />
+                                        <Binding Path="RatingSummary.AverageRating" />
+                                    </MultiBinding>
+                                </Label.TextColor>
+                            </Label>
+
+                            <Label
+                                FontFamily="MaterialIconsRegular"
+                                FontSize="18"
+                                Text="{Binding RatingSummary.AverageRating, Converter={StaticResource ratingToStarsConverter}}">
+                                <Label.TextColor>
+                                    <MultiBinding Converter="{StaticResource ratingAndReviewsToColorConverter}">
+                                        <Binding Path="RatingSummary.TotalReviews" />
+                                        <Binding Path="RatingSummary.AverageRating" />
+                                    </MultiBinding>
+                                </Label.TextColor>
+                            </Label>
+                        </Grid>
+                        <Label
+                            FontSize="8"
+                            Text="{Binding RatingSummary.AverageRating, StringFormat='{0:0.#} avg. rating', FallbackValue='Ratings not available', TargetNullValue='No ratings yet'}"
+                            VerticalOptions="End" />
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToRatingsCommand}" />
+                        </HorizontalStackLayout.GestureRecognizers>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <Image
+                    Margin="-10,10"
+                    Aspect="AspectFill"
+                    HeightRequest="200"
+                    HorizontalOptions="Fill"
+                    Source="{Binding Image, TargetNullValue=fallback.png}" />
+
+
+                <Grid ColumnDefinitions="*, *">
+                    <Button
+                        Margin="5"
+                        BackgroundColor="LightSlateGray"
+                        Command="{Binding AddAsFavoriteCommand}"
+                        HorizontalOptions="Fill"
+                        IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
+                        Text="Add as favorite"
+                        TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=1, AncestorType={x:Type VerticalStackLayout}}}" />
+                    <Button
+                        Margin="5"
+                        BackgroundColor="LightSlateGray"
+                        Command="{Binding RemoveAsFavoriteCommand}"
+                        HorizontalOptions="Fill"
+                        IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
+                        Text="Remove as favorite"
+                        TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=1, AncestorType={x:Type VerticalStackLayout}}}" />
+
+                    <Button
+                        Grid.Column="1"
+                        Margin="5"
+                        BackgroundColor="LightSlateGray"
+                        Command="{Binding NavigateToAddRatingCommand}"
+                        HorizontalOptions="Fill"
+                        Text="Add rating"
+                        TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=1, AncestorType={x:Type VerticalStackLayout}}}" />
+                </Grid>
+
+                <VerticalStackLayout Padding="10">
+                    <Label Text="{Binding Calories, StringFormat='Calories: {0} kcal', TargetNullValue='No calories information available'}" />
+                    <Label Text="{Binding ReadyInMinutes, StringFormat='Ready in: {0} minutes', TargetNullValue='No cooking time specified'}" />
+                    <HorizontalStackLayout>
+                        <Label
+                            FontAttributes="Italic"
+                            Text="Show Allergen information"
+                            VerticalOptions="Center" />
+                        <CheckBox IsChecked="{Binding HideAllergenInformation, Mode=OneWayToSource, Converter={StaticResource inverseBoolConverter}}" />
+                    </HorizontalStackLayout>
+                    <Label IsVisible="{Binding HideAllergenInformation, Mode=OneWay, Converter={StaticResource inverseBoolConverter}}" Text="{Binding Allergens, Converter={StaticResource listToStringConverter}}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Padding="10">
+                    <Label
+                        FontAttributes="Italic,Bold"
+                        FontSize="16"
+                        Text="Ingredients list" />
+                    <HorizontalStackLayout x:DataType="vms:IngredientsListViewModel" BindingContext="{Binding IngredientsList, Source={RelativeSource AncestorType={x:Type vms:RecipeDetailViewModel}}}">
+                        <Label Text="Number of servings:" VerticalOptions="Center" />
+
+                        <Label
+                            Margin="10,0"
+                            FontAttributes="Bold"
+                            Text="{Binding NumberOfServings, Mode=OneWay}"
+                            VerticalOptions="Center" />
+
+                        <Stepper
+                            BackgroundColor="{OnPlatform WinUI={StaticResource Primary}}"
+                            Maximum="8"
+                            Minimum="1"
+                            Value="{Binding NumberOfServings, Mode=TwoWay}" />
+                    </HorizontalStackLayout>
+
+                    <VerticalStackLayout
+                        Margin="0,10"
+                        BindableLayout.ItemsSource="{Binding IngredientsList.Ingredients}"
+                        Spacing="10">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="vms:RecipeIngredientViewModel">
+                                <HorizontalStackLayout Spacing="5">
+                                    <Button
+                                        Command="{Binding AddToShoppingListCommand, Source={RelativeSource AncestorType={x:Type vms:RecipeDetailViewModel}}}"
+                                        CommandParameter="{Binding}"
+                                        FontFamily="MaterialIconsRegular"
+                                        Text="&#xe854;" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding IngredientName, StringFormat='{0}:', Mode=OneTime}"
+                                        VerticalOptions="Center" />
+                                    <Label Text="{Binding DisplayAmount, Mode=OneWay}" VerticalOptions="Center" />
+                                    <Label Text="{Binding Measurement, Mode=OneTime}" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Margin="10,0" Padding="10">
+                        <Label
+                            FontAttributes="Italic,Bold"
+                            FontSize="16"
+                            Text="Shopping list" />
+                        <VerticalStackLayout
+                            Margin="0,10"
+                            BindableLayout.EmptyView="No items added"
+                            BindableLayout.ItemsSource="{Binding ShoppingList, Mode=OneTime}"
+                            Spacing="10">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="vms:RecipeIngredientViewModel">
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Button
+                                            Command="{Binding RemoveFromShoppingListCommand, Source={RelativeSource AncestorType={x:Type vms:RecipeDetailViewModel}}}"
+                                            CommandParameter="{Binding}"
+                                            FontFamily="MaterialIconsRegular"
+                                            Text="&#xe928;" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            Text="{Binding IngredientName, StringFormat='{0}:', Mode=OneTime}"
+                                            VerticalOptions="Center" />
+                                        <Label Text="{Binding DisplayAmount, Mode=OneWay}" VerticalOptions="Center" />
+                                        <Label Text="{Binding Measurement, Mode=OneTime}" VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Padding="10">
+                    <Label
+                        FontAttributes="Italic,Bold"
+                        FontSize="16"
+                        Text="Instructions" />
+                    <VerticalStackLayout
+                        Margin="0,10"
+                        BindableLayout.ItemTemplateSelector="{StaticResource instructionDataTemplateSelector}"
+                        BindableLayout.ItemsSource="{Binding Instructions}"
+                        Spacing="10" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Grid BackgroundColor="GhostWhite" IsVisible="{Binding IsLoading}">
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsLoading}"
+                VerticalOptions="Center" />
+        </Grid>
+    </Grid>
+</ContentPage>

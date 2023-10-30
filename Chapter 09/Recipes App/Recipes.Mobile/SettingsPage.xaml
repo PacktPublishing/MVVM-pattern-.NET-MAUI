@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="SettingsPage">
+    <VerticalStackLayout>
+        <Button
+            Margin="0,5"
+            Background="White"
+            Text="Select Language"
+            TextColor="{StaticResource Primary}" />
+        <Button
+            Margin="0,5"
+            Background="White"
+            Text="About"
+            TextColor="{StaticResource Primary}" />
+        <Label
+            Margin="0,10"
+            HorizontalOptions="Center"
+            Text="Version: 1.0" />
+    </VerticalStackLayout>
+</ContentPage>

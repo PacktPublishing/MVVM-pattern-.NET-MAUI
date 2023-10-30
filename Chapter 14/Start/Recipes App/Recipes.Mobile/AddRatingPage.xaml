@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.AddRatingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:annotations="clr-namespace:System.ComponentModel.DataAnnotations;assembly=System.ComponentModel.DataAnnotations"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:Recipes.Client.Core.ViewModels;assembly=Recipes.Client.Core"
+    Title="Add Rating"
+    x:DataType="vms:AddRatingViewModel"
+    Shell.PresentationMode="ModalAnimated">
+    <VerticalStackLayout Padding="10">
+        <Grid RowDefinitions="Auto, Auto">
+            <Button
+                Margin="3"
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Start"
+                Text="Back" />
+            <Label
+                Grid.Row="1"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="{Binding RecipeTitle, StringFormat='Add Review for {0}'}"
+                TextColor="{StaticResource Primary}" />
+        </Grid>
+        <Label Text="Your email address:" />
+        <Grid ColumnDefinitions="*, Auto" HeightRequest="45">
+            <Entry
+                Keyboard="Email"
+                Text="{Binding EmailAddress, Mode=TwoWay}"
+                VerticalOptions="End" />
+
+            <Label
+                Grid.Column="1"
+                FontFamily="MaterialIconsRegular"
+                FontSize="20"
+                Text="&#xe000;"
+                TextColor="Red"
+                VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger
+                        Binding="{Binding ErrorExposer[EmailAddress].Count}"
+                        TargetType="Label"
+                        Value="0">
+                        <Setter Property="Text" Value="&#xe86c;" />
+                        <Setter Property="TextColor" Value="Blue" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+
+        <Label Text="Display name:" />
+
+        <Entry Text="{Binding DisplayName, Mode=TwoWay}" />
+
+        <Label Text="Rating (0-4):" />
+        <Entry Keyboard="Numeric" Text="{Binding RatingInput, Mode=TwoWay}" />
+
+        <Label Text="Review (optional):" />
+        <Editor Text="{Binding Review, Mode=TwoWay}" />
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding ErrorExposer[Review]}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="annotations:ValidationResult">
+                    <Label
+                        FontSize="12"
+                        Text="{Binding ErrorMessage}"
+                        TextColor="Orange" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Margin="0,10,0,0" BindableLayout.ItemsSource="{Binding Errors}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="annotations:ValidationResult">
+                    <Label
+                        FontSize="12"
+                        Text="{Binding ErrorMessage}"
+                        TextColor="Red" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+        <Button Command="{Binding SubmitCommand}" Text="Submit" />
+        <Entry Margin="10,50" />
+    </VerticalStackLayout>
+</ContentPage>

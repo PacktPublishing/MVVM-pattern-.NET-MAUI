@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.AddRatingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vms="clr-namespace:Recipes.Client.Core.ViewModels;assembly=Recipes.Client.Core"
+    Title="Add Rating"
+    x:DataType="vms:AddRatingViewModel"
+    Shell.PresentationMode="ModalAnimated">
+    <VerticalStackLayout Padding="10">
+        <Grid RowDefinitions="Auto, Auto">
+            <Button
+                Margin="3"
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Start"
+                Text="Back" />
+            <Label
+                Grid.Row="1"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="{Binding RecipeTitle, StringFormat='Add Review for {0}'}"
+                TextColor="{StaticResource Primary}" />
+        </Grid>
+        
+        <Label Text="Your email address:" />
+        <Entry
+                Keyboard="Email"
+                Text="{Binding EmailAddress, Mode=TwoWay}"
+                VerticalOptions="End" />
+
+        <Label Text="Display name:" />
+        <Entry Text="{Binding DisplayName, Mode=TwoWay}" />
+
+        <Label Text="Rating (0-4):" />
+        <Entry Keyboard="Numeric" Text="{Binding RatingInput, Mode=TwoWay}" />
+
+        <Label Text="Review (optional):" />
+        <Editor Text="{Binding Review, Mode=TwoWay}" />
+
+        <Button Command="{Binding SubmitCommand}" Text="Submit" />
+        <Entry Margin="10,50" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.RecipeRatingDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:Recipes.Mobile.Converters"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:Recipes.Client.Core.ViewModels;assembly=Recipes.Client.Core"
+    x:DataType="vms:RecipeRatingsDetailViewModel"
+    Shell.PresentationMode="ModalAnimated">
+    <ContentPage.Resources>
+        <conv:RatingToStarsConverter x:Key="ratingToStarsConverter" />
+        <conv:RatingToColorConverter x:Key="ratingToColorConverter" />
+        <toolkit:IsStringNotNullOrEmptyConverter x:Key="stringNotNullConverter" />
+    </ContentPage.Resources>
+    <Grid>
+        <CollectionView
+            BackgroundColor="White"
+            Header="{Binding}"
+            IsGrouped="True"
+            ItemsSource="{Binding GroupedReviews}"
+            SelectedItems="{Binding SelectedReviews}"
+            SelectionMode="Multiple">
+            <CollectionView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="Auto, Auto">
+                        <Button
+                            Margin="3"
+                            Command="{Binding GoBackCommand}"
+                            HorizontalOptions="Start"
+                            Text="Back" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="{Binding RecipeTitle, StringFormat='Reviews for {0}'}"
+                            TextColor="{StaticResource Primary}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.HeaderTemplate>
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="{x:Type vms:RatingGroup}">
+                    <Label
+                        Margin="0,25,0,0"
+                        FontSize="16"
+                        Text="{Binding Key, StringFormat='{0} stars Reviews', Mode=OneTime}" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.GroupFooterTemplate>
+                <DataTemplate x:DataType="{x:Type vms:RatingGroup}">
+                    <Label FontSize="12" Text="{Binding Count, StringFormat='{0} reviews', Mode=OneTime}" />
+                </DataTemplate>
+            </CollectionView.GroupFooterTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vms:UserReviewViewModel">
+                    <Border
+                        Margin="25,0"
+                        Stroke="LightSlateGray"
+                        StrokeShape="RoundRectangle 8"
+                        StrokeThickness="1">
+                        <VerticalStackLayout
+                            Margin="5"
+                            HorizontalOptions="Fill"
+                            Spacing="5">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="{Binding UserName, Mode=OneTime}" />
+                            <HorizontalStackLayout>
+                                <Label
+                                    FontFamily="MaterialIconsRegular"
+                                    FontSize="22"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Rating, Converter={StaticResource ratingToStarsConverter}, Mode=OneTime}"
+                                    TextColor="{Binding Rating, Converter={StaticResource ratingToColorConverter}, Mode=OneTime}" />
+                                <Label
+                                    FontSize="8"
+                                    Text="{Binding Rating, StringFormat='{0:0.0}', Mode=OneTime}"
+                                    VerticalOptions="End" />
+                            </HorizontalStackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                HorizontalOptions="Center"
+                                IsVisible="{Binding Review, Converter={StaticResource stringNotNullConverter}, Mode=OneTime}"
+                                Text="{Binding Review}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            Command="{Binding ReportReviewsCommand}"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsEnabled, Source={RelativeSource Mode=Self}}"
+            Text="Report review(s)"
+            VerticalOptions="End" />
+    </Grid>
+</ContentPage>

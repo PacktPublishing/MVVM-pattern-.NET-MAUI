@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1",
+    "recipeId": "1",
+    "rating": 4,
+    "userName": "Mrs. Andalouse",
+    "review": "Really enjoyed this classic Caesar Salad. The dressing was spot on!"
+  },
+  {
+    "id": "2",
+    "recipeId": "1",
+    "rating": 3,
+    "userName": "Jane Smith",
+    "review": "The salad was decent, though a bit too heavy on the garlic for me."
+  },
+  {
+    "id": "3",
+    "recipeId": "2",
+    "rating": 2.5,
+    "userName": "Adam Jensen",
+    "review": "Belgian Waffles were too sweet for my liking. The texture was good though."
+  },
+  {
+    "id": "4",
+    "recipeId": "2",
+    "rating": 4,
+    "userName": "Lucy James",
+    "review": "These are the best Belgian Waffles I've ever tasted!"
+  },
+  {
+    "id": "5",
+    "recipeId": "3",
+    "rating": 3.5,
+    "userName": "Emma Thompson",
+    "review": null
+  },
+  {
+    "id": "6",
+    "recipeId": "4",
+    "rating": 3,
+    "userName": "Ethan Hunt",
+    "review": "Moules-Frites had a nice balance of flavors but the fries were a bit soggy."
+  },
+  {
+    "id": "7",
+    "recipeId": "5",
+    "rating": 3.5,
+    "userName": "Oliver Twist",
+    "review": "Absolutely loved the Spaghetti Carbonara, creamy and delicious!"
+  },
+  {
+    "id": "8",
+    "recipeId": "5",
+    "rating": 4,
+    "userName": "Jessica Pearson",
+    "review": "The carbonara was rich and creamy, just how I like it."
+  },
+  {
+    "id": "9",
+    "recipeId": "6",
+    "rating": 3.5,
+    "userName": "Bruce Wayne",
+    "review": "The Chicken Stir-Fry was good, though it lacked a bit of spice."
+  },
+  {
+    "id": "10",
+    "recipeId": "7",
+    "rating": 2.5,
+    "userName": "Tony Stark",
+    "review": "The Pad Thai was alright but it wasn't anything special."
+  },
+  {
+    "id": "11",
+    "recipeId": "1",
+    "rating": 3.5,
+    "userName": "Andrew Peterson",
+    "review": "The Caesar Salad was great! The dressing was just right."
+  },
+  {
+    "id": "12",
+    "recipeId": "1",
+    "rating": 3,
+    "userName": "Amanda Brown",
+    "review": "Nice salad but could use more croutons."
+  },
+  {
+    "id": "13",
+    "recipeId": "2",
+    "rating": 2,
+    "userName": "Steve Watson",
+    "review": "Waffles were okay, could have been fluffier."
+  },
+  {
+    "id": "14",
+    "recipeId": "2",
+    "rating": 3.5,
+    "userName": "Jennifer Anderson",
+    "review": "Great waffles! Just like how they make them in Belgium."
+  },
+  {
+    "id": "15",
+    "recipeId": "3",
+    "rating": 3,
+    "userName": "Tom Wilson",
+    "review": null
+  },
+  {
+    "id": "16",
+    "recipeId": "4",
+    "rating": 3.5,
+    "userName": "Sophia Johnson",
+    "review": "Really liked the Moules-Frites. Fresh and tasty!"
+  },
+  {
+    "id": "17",
+    "recipeId": "5",
+    "rating": 4,
+    "userName": "Robert Garcia",
+    "review": "The Spaghetti Carbonara was to die for! A must-try."
+  },
+  {
+    "id": "18",
+    "recipeId": "5",
+    "rating": 3.5,
+    "userName": "Emily Robinson",
+    "review": "Loved the Carbonara. So rich and creamy!"
+  },
+  {
+    "id": "19",
+    "recipeId": "6",
+    "rating": 3,
+    "userName": "Mark Lewis",
+    "review": "The stir-fry was good but it could use more veggies."
+  },
+  {
+    "id": "20",
+    "recipeId": "7",
+    "rating": 2.5,
+    "userName": "Sarah Miller",
+    "review": "The Pad Thai was decent but I've had better."
+  }
+]

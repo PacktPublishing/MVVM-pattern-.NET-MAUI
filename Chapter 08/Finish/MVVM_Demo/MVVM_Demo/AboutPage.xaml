@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MVVM_Demo.AboutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="About">
+    <VerticalStackLayout Padding="10">
+        <Label
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            Text="About this app"
+            VerticalOptions="Center" />
+        <Label HorizontalOptions="Start" Text="'Quote of the Day' is an engaging, thoughtfully designed application built to serve as a demonstration model for the concepts outlined in our accompanying book. Developed using .NET MAUI and leveraging the MVVM (Model-View-ViewModel) pattern, the app shows some clean coding practices, efficient data-binding, and seamless navigation." />
+        <Label x:Name="lblParameter" FontAttributes="Bold" />
+    </VerticalStackLayout>
+</ContentPage>

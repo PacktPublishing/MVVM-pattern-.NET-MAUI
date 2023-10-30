@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MVVM_Demo.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid>
+        <Button
+            x:Name="GetQuoteButton"
+            Clicked="Button_Clicked"
+            HorizontalOptions="Center"
+            Text="Get Quote of the day  (the not-MVVM way)"
+            VerticalOptions="Center" />
+
+        <Label
+            x:Name="QuoteLabel"
+            HorizontalOptions="Center"
+            IsVisible="false"
+            Style="{DynamicResource TitleStyle}"
+            VerticalOptions="Center" />
+    </Grid>
+
+
+</ContentPage>

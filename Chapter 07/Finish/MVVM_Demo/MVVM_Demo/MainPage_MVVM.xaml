@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MVVM_Demo.MainPage_MVVM"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid>
+        <Button
+            Command="{Binding GetQuoteCommand}"
+            IsVisible="{Binding IsButtonVisible}"
+            Text="Get Quote of the day" />
+
+        <Label
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsLabelVisible}"
+            Style="{DynamicResource TitleStyle}"
+            Text="{Binding QuoteOfTheDay}"
+            TextColor="white"
+            VerticalOptions="Center" />
+    </Grid>
+
+</ContentPage>

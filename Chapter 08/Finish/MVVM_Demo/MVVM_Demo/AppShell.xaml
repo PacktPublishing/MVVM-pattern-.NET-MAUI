@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MVVM_Demo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MVVM_Demo"
+    Shell.FlyoutBehavior="Flyout">
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="75">
+            <Label
+                Margin="5"
+                HorizontalOptions="Center"
+                Text="Quote of the Day"
+                TextColor="{StaticResource White}"
+                VerticalOptions="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+    <FlyoutItem Title="Quotes" Icon="badge.png">
+        <Tab Title="MVVM">
+            <ShellContent
+                Title="Quote of the Day"
+                ContentTemplate="{DataTemplate local:MainPage_MVVM}"
+                Icon="badge.png" />
+        </Tab>
+        <Tab Title="Not MVVM">
+            <ShellContent
+                Title="Quote of the Day"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Icon="badge.png" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Settings" Icon="settings.png">
+        <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}" />
+    </FlyoutItem>
+</Shell>
