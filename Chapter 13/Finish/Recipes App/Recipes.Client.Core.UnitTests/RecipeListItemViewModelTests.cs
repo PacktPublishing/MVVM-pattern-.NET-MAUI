@@ -10,7 +10,7 @@ public class RecipeListItemViewModelTests
     [Theory]
     [InlineData("id1", "title1", false, "image1")]
     [InlineData("id2", "title2", true, "image2")]
-    [InlineData("foo", ",bar", true, null)]
+    [InlineData("foo", "bar", true, null)]
     [InlineData(null, null, false, null)]
     public void ViewModel_Initialized_PropertiesSetCorrectly(string id, string title, bool isFavorite, string image)
     {
@@ -40,7 +40,7 @@ public class RecipeListItemViewModelTests
     [InlineData(true, true)]
     [InlineData(false, false)]
     public void 
-        FavoriteUpdateMsgRecieved_SameId_FavoriteUpdated(
+        FavoriteUpdateMsgReceived_SameId_FavoriteUpdated(
         bool originalValue, bool updateToValue)
     {
         //Arrange
@@ -62,7 +62,7 @@ public class RecipeListItemViewModelTests
     [InlineData(false, true)]
     [InlineData(true, true)]
     [InlineData(false, false)]
-    public void FavoriteUpdateMsgRecieved_DifferentId_FavoriteNotUpdated(bool originalValue, bool updateToValue)
+    public void FavoriteUpdateMsgReceived_DifferentId_FavoriteNotUpdated(bool originalValue, bool updateToValue)
     {
         //Arrange
         var sut = new RecipeListItemViewModel("someid", "title", originalValue, "image");
