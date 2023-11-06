@@ -114,7 +114,7 @@
     ],
     "LastUpdated": "2020-07-03T00:00:00",
     "Author": "Sally Burton",
-    "Image": "https://localhost:7220/images/caesarsalad.png",
+    "Image": "https://raw.githubusercontent.com/PacktPublishing/MVVM-pattern-.NET-MAUI/main/raw/images/caesarsalad.png",
     "Calories": 240,
     "ReadyInMinutes": 30
   },
@@ -227,7 +227,7 @@
     ],
     "LastUpdated": "2021-12-12T00:00:00",
     "Author": "Mrs. Andalouse",
-    "Image": "https://localhost:7220/images/waffle.png",
+    "Image": "https://raw.githubusercontent.com/PacktPublishing/MVVM-pattern-.NET-MAUI/main/raw/images/waffle.png",
     "Calories": 350,
     "ReadyInMinutes": 20
   },
@@ -494,7 +494,7 @@
     ],
     "LastUpdated": "2021-06-05T00:00:00",
     "Author": "Nigel Pence",
-    "Image": "https://localhost:7220/images/moules.png",
+    "Image": "https://raw.githubusercontent.com/PacktPublishing/MVVM-pattern-.NET-MAUI/main/raw/images/moules.png",
     "Calories": 550,
     "ReadyInMinutes": 30
   },
@@ -612,7 +612,7 @@
     ],
     "LastUpdated": "2021-09-01T00:00:00",
     "Author": "Luigi",
-    "Image": "https://localhost:7220/images/carbonara.png",
+    "Image": "https://raw.githubusercontent.com/PacktPublishing/MVVM-pattern-.NET-MAUI/main/raw/images/carbonara.png",
     "Calories": 650,
     "ReadyInMinutes": 20
   },
@@ -758,7 +758,7 @@
     ],
     "LastUpdated": "2020-10-09T00:00:00",
     "Author": "Maddie Lincoln",
-    "Image": "https://localhost:7220/images/stirfry.png",
+    "Image": "https://raw.githubusercontent.com/PacktPublishing/MVVM-pattern-.NET-MAUI/main/raw/images/stirfry.png",
     "Calories": 350,
     "ReadyInMinutes": 20
   },
