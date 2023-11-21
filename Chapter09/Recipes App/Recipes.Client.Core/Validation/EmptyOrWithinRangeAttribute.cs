@@ -22,31 +22,4 @@ public class EmptyOrWithinRangeAttribute : ValidationAttribute
 
         }
     }
-
-
-    //protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
-    //{
-    //    if (value is string valueAsString)
-    //    {
-    //        if (!string.IsNullOrEmpty(valueAsString))
-    //        {
-    //            Debug.WriteLine(valueAsString);
-    //            Debug.WriteLine(valueAsString.Length);
-
-    //            if (valueAsString.Length < MinLength ||
-    //                valueAsString.Length > MaxLength)
-    //            {
-
-    //                Debug.WriteLine($"The value should be between {MinLength} and {MaxLength} characters long, or empty.");
-    //                var x = ErrorMessage;
-    //                return new($"The value should be between {MinLength} and {MaxLength} characters long, or empty.");
-    //            }
-    //        }
-    //        return ValidationResult.Success;
-    //    }
-    //    else
-    //    {
-    //        throw new ArgumentException("Value should be of type string");
-    //    }
-    //}
 }
