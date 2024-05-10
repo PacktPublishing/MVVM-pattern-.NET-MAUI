@@ -42,6 +42,12 @@ With the following software and hardware list you can run all code files present
 | -------- | ------------------------------------ | ----------------------------------- |
 | 1-14 | Visual Studio 2022 or Visual Studio Code | Windows, Mac OS X, and Linux (Any) |
 
+## Errata & Troubleshooting Tips
+
+### Page 68 : There is a typo: 'RecipesDetailViewModel' instead of 'RecipeDetailViewModel' (Recipe is singular in the source code)
+
+### Page: 65: At the last line of page 65, there is a typo: 'PropertyChhanged' instead of 'PropertyChanged'
+
 ### Related products
 * .NET MAUI for C# Developers [[Packt]](https://www.packtpub.com/product/net-maui-for-c-developers/9781837631698?utm_source=github&utm_medium=repository&utm_campaign=9781837631698) [[Amazon]](https://www.amazon.com/dp/1837631697)
 
